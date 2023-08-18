@@ -1,0 +1,78 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">Instructors</h4>
+        <a href="{{url_for('courseUpload.instructorUpload')}}"><button class='btn btn-primary'>Add new Instructor</button></a>
+        <br>
+    {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <br>
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+        
+        <br>
+        <br>
+        <table class="table" style="background-color:white;padding:10px;border-radius:15px;">
+            <thead>
+              <tr>
+                <th scope="col">image</th>
+                <th scope="col">name</th>
+                <th scope="col">Actions</th>
+             
+              </tr>
+            </thead>
+            <tbody>
+                {%for instructor in instructors%}
+              <tr>
+                <th scope="row">
+                    <img src="../static/uploads/{{instructor.Image}}" alt="" height="200px" width="150px">
+                </th>
+                <td>{{instructor.name}}</td>
+             
+                <td>
+                    <a href="{{url_for('courseUpload.delete_instructor',id = instructor.id)}}"><button class="btn btn-danger">delete</button></a>
+                </td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+        <!--dashboard content end-->
+
+
+
+{%endblock%}

@@ -1,0 +1,109 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">courses</h4>
+        <div class="row">
+          <div class="col-md-2">
+              <a href="{{url_for('courseUpload.newUpload')}}">
+                  <button class='btn btn-primary'>New Course</button>
+                </a>
+          </div>
+          <br>
+          <div class="col-md-2">
+              <a href="{{url_for('course_content.new_topic')}}">
+                  <button class='btn btn-primary'>New Topic</button>
+                </a>
+          </div>
+      </div>
+      <br>
+      {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+        <br>
+        <table class="table" style="background-color:white;padding:10px;border-radius:15px;">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Duration(hrs)</th>
+                <th scope="col">Lectures</th>
+                <th scope="col">subject</th>
+                <th scope="col">Purchases</th>
+                <th scope="col">Enrolled students</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%if courses | length == 0%}
+              <div class="alert alert-warning" role="alert">
+                There are no courses on the platform,kindly use the button above to create a new course!
+            </div>
+            {%endif%}
+           
+                {%for course in courses%}
+              <tr>
+                <th scope="row">{{course.name}}</th>
+                <td>{{course.duration}}</td>
+                <td>{{course.lectures}}</td>
+                <td>{{course.subject}}</td>
+                <td>{{course.course_orders | length}}</td>
+                <td>{{course.enrolled_students | length}}</td>
+                <td>
+                  <div class="row">
+                    <div class="col-md-4" ">
+                      <a href="{{url_for('course.courseDetails',name = course.name)}}"><button class="btn btn-primary">view</button></a>
+                    </div>
+                    
+                    
+                    <div class="col-md-3">
+                      <a href="{{url_for('courseUpload.delete_course',name = course.name)}}"><button class="btn btn-danger">delete</button></a>
+                    </div>
+
+                  </div>
+                  
+                </td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+        <!--dashboard content end-->
+
+
+
+{%endblock%}

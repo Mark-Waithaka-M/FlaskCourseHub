@@ -1,0 +1,74 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">All Orders</h4>
+        
+
+       
+        
+        <br>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><span>Order</span></th>
+                    <th><span>Date</span></th>
+                    <th><span>Status</span></th>
+                    <th><span>Total</span></th>
+                    <th><span>Actions</span></th>
+                </tr>
+            </thead>
+            <tbody>
+              
+         {%for order in orders%}
+                <tr>
+                    <td class="order">
+                        <a href="#">#{{order.identifier}}</a>
+                    </td>
+                    <td class="date">
+                        <span>{{order.date.strftime('%A, %B %d, %Y')}}</span>
+                    </td>
+                    <td class="status">{{order.status}}</td>
+                    <td class="total"><span class="price">${{order.total}}<span class="separator">.00</span></span></td>
+                    <td class="actions">
+                        <a href="{{url_for('order.order_details',identifier=order.identifier)}}" class="btn btn-primary btn-hover-secondary">View</a>
+                    </td>
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+        <!--dashboard content end-->
+
+
+
+{%endblock%}

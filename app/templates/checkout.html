@@ -1,0 +1,549 @@
+{% extends 'base.html'%}
+
+{% block body %}
+   <!-- Page Banner Section Start -->
+   <div class="page-banner bg-color-05">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}>Home</a></li>
+                    <li class="breadcrumb-item active">Checkout</li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption text-center">
+                <h2 class="page-banner__main-title">Checkout</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Offcanvas Start -->
+<div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+        <div class="offcanvas-logo">
+            <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+        </div>
+        <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <nav class="canvas-menu">
+            <ul class="offcanvas-menu">
+                <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                <li>
+                    <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                    
+                </li>
+                <li>
+                    <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                    
+                </li>
+                <li>
+                    <a href="#"><span>Help?</span></a>
+                    <ul class="sub-menu">
+                        
+                        <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                        <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                        <li><a href="faqs.html"><span>FAQs</span></a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>more</span></a>
+                    <ul class="sub-menu">
+                        <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                        <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                        <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                        <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                        <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                        {%if current_user.is_admin == True%}
+                        <li><a href=""><span>Admin dash</span></a></li>
+                        {%endif%}
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header User Button Start -->
+    <div class="offcanvas-user d-lg-none">
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+        </div>
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+        </div>
+    </div>
+    <!-- Header User Button End -->
+
+</div>
+<!-- Offcanvas End -->
+
+<!-- Checkout Section Start -->
+<div class="checkout-section section-padding-01">
+    <div class="container custom-container">
+
+        <div class="row gy-8">
+            <div class="col-lg-7">
+                <!-- Checkout Form Start -->
+                <div class="checkout-form">
+
+                    <!-- Checkout Form Info Start 
+                    <div class="checkout-form__info">
+                        <p>Returning customer? <button class="info-toggle" data-bs-toggle="modal" data-bs-target="#loginModal">Click here to login</button></p>
+                    </div>
+                    <!-- Checkout Form Info End -->
+
+                    <!-- Checkout Form Info Start 
+                    <div class="checkout-form__info">
+                        <p>Have a coupon? <button class="info-toggle" data-bs-toggle="collapse" data-bs-target="#collapseExample">Click here to enter your code</button></p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="checkout-form__item">
+                                <input type="text" class="form-control" placeholder="Coupon code">
+                                <button class="coupon-btn"><i class="fal fa-gift"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Checkout Form Info End -->
+
+                    <!-- Checkout Form Start -->
+                    {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+                    <form action="{{url_for('checkout.add_billing_details')}}" method="post">
+                    <div class="checkout-form__details">
+
+                        <h4 class="checkout-form__title">Billing details</h4>
+
+                        <div class="row gy-4">
+                            <div class="col-md-6">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">First name *</label>
+                                    <input type="text" name = "first_name" class="form-control" placeholder="Your Name">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">Last name *</label>
+                                    <input type="text" name="last_name" class="form-control" placeholder="Last name">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-12">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">Company name *</label>
+                                    <input type="text" name="company_name" class="form-control" placeholder="Company name">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-12">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">Country / Region*</label>
+                                    <input type="text" name="country" class="form-control" placeholder="your country">
+
+
+                                  
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-8">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">Street address *</label>
+                                    <input type="text" name="street_address" class="form-control" placeholder="Your Name">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-4">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">Apartment, suite, unit, etc. *</label>
+                                    <input type="text" name="apartment" class="form-control" placeholder="Apartment, suite, unit, etc.">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">Town / City *</label>
+                                    <input type="text" name="town" class="form-control" placeholder="Town / City">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">State *</label>
+                                    <input type="text" name="state" class="form-control" placeholder="State">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">Zip *</label>
+                                    <input type="text" name="zip-code" class="form-control" placeholder="Zip">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">Phone *</label>
+                                    <input type="text" name="phone" class="form-control" placeholder="Phone">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Checkout Form Input Start -->
+                                <div class="checkout-form__input">
+                                    <label class="form-label">Email address *</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Email address">
+                                </div>
+                                <!-- Checkout Form Input End -->
+                            </div>
+                            <br>
+                            <button class="btn btn-primary btn-hover-secondary">save details</button>
+                        </form>
+
+                        </div>
+
+                        <!-- Checkout Form Input Start 
+                        <div class="checkout-form__input form-check mt-4">
+                            <input type="checkbox" id="account">
+                            <label for="account">Create an account?</label>
+                        </div> -->
+                        <!-- Checkout Form Input End
+
+                        <!-- Checkout Form Account Start
+                        <div class="checkout-form__account mt-4">
+                            <!-- Checkout Form Input Start 
+                            <div class="checkout-form__input">
+                                <label class="form-label">Create account password *</label>
+                                <input type="password" class="form-control" placeholder="password">
+                            </div>
+                            <!-- Checkout Form Input End 
+                        </div>
+                        <!-- Checkout Form Account End 
+
+                        <!-- Checkout Form Input Start
+                        <div class="checkout-form__input form-check mt-4">
+                            <input type="checkbox" id="shipping">
+                            <label for="shipping"> Ship to a different address?</label>
+                        </div>
+                         Checkout Form Input End -->
+
+                        <!-- Checkout Form Shipping Start -->
+                        <div class="checkout-form__shipping mt-4">
+                            <div class="row gy-4">
+                                <div class="col-md-6">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">First name *</label>
+                                        <input type="text" name="first_name" class="form-control" placeholder="Your Name">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">Last name *</label>
+                                        <input type="text" name="last_name" class="form-control" placeholder="Last name">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">Company name</label>
+                                        <input type="text" name="company_name" class="form-control" placeholder="Company name">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">Country / Region*</label>
+                                        <input type="text" name="country" class="form-control" placeholder="your country">
+
+                                       
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-8">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">Street address *</label>
+                                        <input type="text" name="street_address" class="form-control" placeholder="Your Name">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">Apartment, suite, unit, etc. *</label>
+                                        <input type="text" name="apartment" class="form-control" placeholder="Apartment, suite, unit, etc.">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">Town / City *</label>
+                                        <input type="text" name="town" class="form-control" placeholder="Town / City">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">State *</label>
+                                        <input type="text" name="state" class="form-control" placeholder="State">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">Zip *</label>
+                                        <input type="text" name="zip" class="form-control" placeholder="Zip">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">Phone *</label>
+                                        <input type="text" name="phone" class="form-control" placeholder="Phone">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Checkout Form Input Start -->
+                                    <div class="checkout-form__input">
+                                        <label class="form-label">Email address *</label>
+                                        <input type="email" name="email" class="form-control" placeholder="Email address">
+                                    </div>
+                                    <!-- Checkout Form Input End -->
+                                    <br>
+                                    <button class="btn btn-primary btn-hover-secondary">Place order</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <!-- Checkout Form Shipping End -->
+
+                        <!-- Checkout Form Input Start 
+                        <div class="checkout-form__input mt-4">
+                            <label class="form-label">Order notes </label>
+                            <textarea class="form-control" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                        </div> -->
+                        <!-- Checkout Form Input End -->
+
+                    </div>
+                    <!-- Checkout Form End -->
+
+                    <!-- Checkout Payment Method End -->
+                    <div class="checkout-form__payment">
+                        <h4 class="checkout-form__title">Payment information</h4>
+
+                        <ul class="checkout-form__payment-methods">
+                           
+                            <li class="checkout-form__payment-method">
+                           
+                                <input class="payment-method" type="radio" id="cash" checked name="payment-method">
+                                <label class="checkout-form__payment-title" for="cash">
+                                    <span class="payment-icon">
+                                    <svg viewBox="0 0 511 511.99978" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="m235.792969 347.265625c3.902343-3.910156 3.902343-10.238281 0-14.148437-3.90625-3.898438-10.234375-3.898438-14.144531 0-3.898438 3.910156-3.898438 10.238281 0 14.148437 3.910156 3.898437 10.238281 3.898437 14.144531 0zm0 0"></path><path d="m188.449219 109.96875c0 60.636719 49.332031 109.972656 109.96875 109.972656s109.96875-49.335937 109.96875-109.972656-49.332031-109.96875-109.96875-109.96875-109.96875 49.332031-109.96875 109.96875zm199.945312 0c0 49.613281-40.363281 89.976562-89.976562 89.976562s-89.976563-40.363281-89.976563-89.976562c0-49.609375 40.363282-89.972656 89.976563-89.972656s89.976562 40.363281 89.976562 89.972656zm0 0"></path><path d="m115.652344 509.042969c3.875 3.90625 10.183594 3.949219 14.109375.082031l48.46875-47.75c8.234375-8.234375 10.738281-20.425781 7.117187-31.023438l10.425782-10.054687c5.613281-5.421875 13.003906-8.410156 20.816406-8.410156h132.902344c23.578124 0 45.863281-9.054688 62.757812-25.496094.695312-.675781-5.277344 6.359375 90.667969-108.3125 14.230469-16.835937 12.101562-42.117187-4.75-56.363281-16.746094-14.113282-41.832031-12.085938-56.101563 4.460937l-58.992187 60.632813c-7.449219-9.167969-18.808594-14.882813-31.082031-14.882813h-111.480469c-15.863281-6.636719-32.695313-9.996093-50.0625-9.996093-48.140625 0-90.175781 22.234374-112.734375 63.921874-9.503906-1.800781-19.527344 1.074219-26.738282 8.285157l-47.558593 47.699219c-3.882813 3.894531-3.890625 10.195312-.015625 14.101562zm74.792968-227.121094c15.3125 0 30.117188 3.082031 44.011719 9.160156 1.265625.554688 2.628907.839844 4.007813.839844h113.527344c10.839843 0 19.996093 8.839844 19.996093 19.992187 0 11.027344-8.96875 19.996094-19.996093 19.996094h-81.566407c-5.519531 0-9.996093 4.476563-9.996093 9.996094 0 5.523438 4.476562 9.996094 9.996093 9.996094h81.566407c22.050781 0 39.988281-17.9375 39.988281-39.988282 0-1.757812-.125-3.5-.351563-5.226562 57.066406-58.660156 65.113282-66.902344 65.457032-67.3125 7.125-8.410156 19.773437-9.476562 28.1875-2.382812 8.421874 7.121093 9.488281 19.761718 2.34375 28.21875l-89.667969 107.195312c-13.09375 12.570312-30.285157 19.488281-48.457031 19.488281h-132.902344c-13.023438 0-25.351563 4.980469-34.703125 14.015625l-8.496094 8.199219-78.320313-78.316406c18.304688-34.339844 52.652344-53.871094 95.375-53.871094zm-125.320312 66.34375c3.296875-3.296875 8.359375-3.890625 12.378906-1.40625 1.730469 1.054687-3.238281-3.46875 86.589844 86.234375 3.996094 3.996094 3.78125 10.363281.054688 14.089844l-41.320313 40.707031-98.230469-98.980469zm0 0"></path><path d="m286.421875 49.988281v11.714844c-11.636719 4.125-19.996094 15.238281-19.996094 28.273437 0 16.535157 13.453125 29.992188 29.992188 29.992188 5.511719 0 9.996093 4.484375 9.996093 9.996094 0 5.511718-4.484374 9.996094-9.996093 9.996094-4.269531 0-8.882813-2.683594-12.980469-7.5625-3.554688-4.226563-9.859375-4.769532-14.085938-1.21875-4.226562 3.554687-4.773437 9.859374-1.21875 14.085937 5.34375 6.355469 11.628907 10.785156 18.289063 13.019531v11.667969c0 5.523437 4.476563 9.996094 9.996094 9.996094s9.996093-4.472657 9.996093-9.996094v-11.714844c11.636719-4.128906 19.996094-15.242187 19.996094-28.273437 0-16.539063-13.453125-29.992188-29.992187-29.992188-5.511719 0-9.996094-4.484375-9.996094-9.996094 0-5.511718 4.484375-10 9.996094-10 3.542969 0 7.28125 1.808594 10.8125 5.226563 3.96875 3.839844 10.296875 3.734375 14.136719-.230469 3.839843-3.96875 3.734374-10.296875-.230469-14.136718-5.074219-4.910157-10.152344-7.6875-14.722657-9.203126v-11.644531c0-5.523437-4.476562-10-9.996093-10s-9.996094 4.476563-9.996094 10zm0 0"></path>
+                                    </svg>
+                                </span>
+                                <a href="{{url_for('checkout.pay_with_cash')}}"> <span class="payment-name">Cash on delivery</span>  </a>
+                                </label>
+
+                                <div class="payment-details">
+                                    <p>Pay with cash upon delivery.</p>
+                                </div>
+                             
+                            </li>
+                      
+                            <li class="checkout-form__payment-method" id="buy-with-stripe">
+                                <input class="payment-method" type="radio" id="bank" name="payment-method">
+                                <label class="checkout-form__payment-title" for="bank">
+                                    <span class="payment-icon">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512.16 512.16">
+                                        <g>
+                                            <path d="M272.067,336.147H408.6c5.12,0,8.533-3.413,8.533-8.533v-76.8c0-5.12-3.413-8.533-8.533-8.533H272.067
+                                                c-5.12,0-8.533,3.413-8.533,8.533v76.8C263.533,332.733,266.947,336.147,272.067,336.147z M280.6,259.347h119.467v59.733H280.6
+                                                V259.347z"></path>
+                                            <path d="M41.667,225.213h68.267c5.12,0,8.533-3.413,8.533-8.533s-3.413-8.533-8.533-8.533H41.667
+                                                c-5.12,0-8.533,3.413-8.533,8.533S36.547,225.213,41.667,225.213z"></path>
+                                            <path d="M144.067,225.213h68.267c5.12,0,8.533-3.413,8.533-8.533s-3.413-8.533-8.533-8.533h-68.267
+                                                c-5.12,0-8.533,3.413-8.533,8.533S138.947,225.213,144.067,225.213z"></path>
+                                            <path d="M41.667,259.347H152.6c5.12,0,8.533-3.413,8.533-8.533s-3.413-8.533-8.533-8.533H41.667c-5.12,0-8.533,3.413-8.533,8.533
+                                                S36.547,259.347,41.667,259.347z"></path>
+                                            <path d="M212.333,242.28h-25.6c-5.12,0-8.533,3.413-8.533,8.533s3.413,8.533,8.533,8.533h25.6c5.12,0,8.533-3.413,8.533-8.533
+                                                S217.453,242.28,212.333,242.28z"></path>
+                                            <path d="M503.32,136.467c-5.973-7.68-13.653-11.947-23.04-12.8l-20.48-2.482V97.213V80.147c0-18.773-15.36-34.133-34.133-34.133
+                                                H33.133C14.36,46.013-1,61.373-1,80.147v17.067v68.267v187.733c0,15.413,10.357,28.518,24.453,32.718
+                                                c-0.43,17.262,12.631,32.248,30.161,33.842l394.24,44.373c0.853,0,2.56,0,3.413,0c17.067,0,32.427-12.8,34.133-29.013
+                                                l25.6-273.92C511.853,152.68,509.293,143.293,503.32,136.467z M16.067,105.747h426.667v22.187v29.013H16.067V105.747z
+                                                 M33.133,63.08h392.533c9.387,0,17.067,7.68,17.067,17.067v8.533H16.067v-8.533C16.067,70.76,23.747,63.08,33.133,63.08z
+                                                 M16.067,353.213v-179.2h426.667v179.2c0,9.387-7.68,17.067-17.067,17.067H33.987h-0.853
+                                                C23.747,370.28,16.067,362.6,16.067,353.213z M493.933,157.8l-25.6,273.92c-0.853,9.387-9.387,16.213-18.773,15.36
+                                                L56.173,402.707c-8.533-0.853-14.507-7.68-15.36-15.36h384.853c18.773,0,34.133-15.36,34.133-34.133V165.48v-28.16l19.627,1.707
+                                                c4.267,0,8.533,2.56,11.093,5.973C493.08,148.413,494.787,153.533,493.933,157.8z"></path>
+                                        </g>
+                                    </svg>
+                                </span>
+                                    <a href="">
+                                        <span class="payment-name">Pay with Stripe</span>
+                                    </a>
+                                </label>
+
+                                <div class="payment-details">
+                                    <p>Make simple payment with our stripe express checkout.</p>
+                                </div>
+                            </li>
+                          
+                          
+                           
+                        </ul>
+
+                        <div class="checkout-form__place-order">
+                            <!-- Checkout Form Input Start -->
+                            <div class="checkout-form__input form-check">
+                                <input type="checkbox" id="conditions">
+                                <label for="conditions">I have read and agree to the website terms and conditions *</label>
+                            </div>
+                            <!-- Checkout Form Input End -->
+                            <button class="btn btn-primary btn-hover-secondary">Place order</button>
+                        </div>
+                    </div>
+                    <!-- Checkout Payment Method End -->
+
+                </div>
+                <!-- Checkout Form End -->
+            </div>
+            <div class="col-lg-5">
+                <!-- Checkout Form Start -->
+                <div class="checkout-order">
+                    <h4 class="checkout-order__title">Order summary</h4>
+
+                    <div class="checkout-order__details table-responsive">
+                        <table class="table">
+                            <tbody>
+                                {%for item in current_user.cart_items%}
+                               <tr class="checkout-order__cart-item">
+                                    <td class="checkout-order__info">
+
+                                        <div class="checkout-order__product">
+                                            <div class="checkout-order__product-thumbnail">
+                                                <img src="../static/uploads/{{item.cart_item_parent.image}}" alt="Product" width="80" height="80">
+                                            </div>
+                                            <div class="checkout-order__product-caption">
+                                                <h3 class="checkout-order__name">{{item.cart_item_parent.name}} <span class="quantity">x {{item.quantity}}</span></h3>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td class="checkout-order__total">
+                                        <span class="sale-price">${{item.cart_item_parent.price()}}<span class="separator">.00</span></span>
+                                    </td>
+                                </tr> 
+                                {%endfor%}
+                 
+                             
+                              
+                              
+                            </tbody>
+                            <tfoot>
+                                <tr class="cart-subtotal">
+                                    <th>Subtotal</th>
+                                    <td>
+                                        <span class="subtotal-price">${{sub_total}}<span class="separator">.00</span></span>
+                                    </td>
+                                </tr>
+                                {%if sub_total != 0%}
+                                <tr class="cart-shipping">
+                                    <th>Shipping</th>
+                                    <td> <span class="shipping-fee">$5<span class="separator">.00</span></span></td>
+                                </tr>
+                                {%endif%}
+
+                                {%if sub_total != 0%}
+                                <tr class="order-total">
+                                    <th>Total</th>
+                                    <td>
+                                        <span class="total-price">${{sub_total + 5}}<span class="separator">.00</span></span>
+                                    </td>
+                                </tr>
+                                {%else%}
+                                <tr class="order-total">
+                                    <th>Total</th>
+                                    <td>
+                                        <span class="total-price">${{sub_total}}<span class="separator">.00</span></span>
+                                    </td>
+                                </tr>
+                                {%endif%}
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <!-- Checkout Form End -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Checkout Section End -->
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{{url_for('static',filename = 'script.js')}}"></script>
+{% endblock %}

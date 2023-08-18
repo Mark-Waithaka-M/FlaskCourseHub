@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/reviewsUpload" method="post" enctype="multipart/form-data">
+        <label for="name">reviewer's Name:</label>
+        <input type="text" name="name" id="name">
+
+        <label for="ratings">Rate:</label>
+        <input type="number" name="ratings" id="ratings">
+
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image">  
+
+        <label for="content">Review Content:</label>
+        <textarea name="content" placeholder="content" rows="15" cols="60"></textarea>
+
+        <label for="instructor">Instructor</label>
+        <select name="instructor" id ="instructor">
+            {%for instructor in instructors%}
+            <option value="{{instructor.id}}">{{instructor.name}}</option>
+            {%endfor%}
+        </select>
+
+        <label for="course">Course</label><br>
+        <select name="course" id="course">
+            {%for course in courses%}
+            <option value="{{course.id}}">{{course.name}}</option>
+            {%endfor%}
+        </select>
+
+        
+        <br>
+        <input type="submit" value="submit">
+
+    </form>
+</body>
+</html>

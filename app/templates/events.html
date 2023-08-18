@@ -1,0 +1,304 @@
+{% extends 'base.html'%}
+
+{% block body %}
+   <!-- Page Banner Section Start -->
+   <div class="page-banner bg-color-05">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}>Home</a></li>
+                    <li class="breadcrumb-item active">Events</li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption text-center">
+                <h2 class="page-banner__main-title">Events</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Offcanvas Start -->
+<div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+        <div class="offcanvas-logo">
+            <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+        </div>
+        <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <nav class="canvas-menu">
+            <ul class="offcanvas-menu">
+                <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                <li>
+                    <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                    
+                </li>
+                <li>
+                    <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                    
+                </li>
+                <li>
+                    <a href="#"><span>Help?</span></a>
+                    <ul class="sub-menu">
+                        
+                        <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                        <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                        <li><a href="faqs.html"><span>FAQs</span></a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>more</span></a>
+                    <ul class="sub-menu">
+                        <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                        <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                        <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                        <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                        <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                        {%if current_user.is_admin == True%}
+                        <li><a href=""><span>Admin dash</span></a></li>
+                        {%endif%}
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header User Button Start -->
+    <div class="offcanvas-user d-lg-none">
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+        </div>
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+        </div>
+    </div>
+    <!-- Header User Button End -->
+
+</div>
+<!-- Offcanvas End -->
+
+
+
+<!-- Event Start -->
+<div class="event-section section-padding-01">
+    <div class="container">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-9">
+
+                <!-- Archive Filter Bars Start -->
+                <div class="archive-filter-bars">
+
+                    <div class="archive-filter-bar">
+                        <p>We found <span>{{events.items | length}}</span> events available for you</p>
+                    </div>
+
+                    <div class="archive-filter-bar">
+
+                        <div class="filter-bar-wrapper">
+                            <div class="filter-select">
+                                <form action="#">
+                                    <select class="edumall-nice-select" data-select="{&quot;fieldLabel&quot;:&quot;Event Type:&quot;}">
+                                        <option value="" selected='selected'> All </option>
+                                        <option value="happening"> Happening</option>
+                                        <option value="upcoming"> Upcoming</option>
+                                        <option value="expired"> Expired</option>
+                                    </select>
+                                    <input type="hidden" name="paged" value="1">
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- Archive Filter Bars End -->
+
+                <!-- Events Start -->
+                {%if events.items | length != 0%}
+                <div class="row gy-6 grid">
+                    {% for event in events.items%}
+                    <div class="col-lg-4 col-sm-6 grid-item">
+                        <!-- Event Item Start -->
+                        
+                        <div class="event-item-02" data-aos="fade-up" data-aos-duration="1000">
+                            <div class="event-item-02__image">
+                                <a href="{{ url_for('events.eventDetails', id=event.id) }}"><img src="../static/uploads/{{event.Image}}" alt="Event" width="330" height="186"></a>
+                              <!--  <div class="event-item-02__date">event.event_details.date_added</div> -->
+                            </div>
+                            <div class="event-item-02__content">
+                                <h3 class="event-item-02__title"><a href="{{ url_for('events.eventDetails', id=event.id) }}">{{event.heading}}</a></h3>
+                                <p class="event-item-02__location"><i class="far fa-map-marker-alt"></i> {{event.location}}</p>
+                            </div>
+                        </div>
+                        <!-- Event Item End -->
+                       
+                    
+                    </div>
+                   
+                    {% endfor %}
+                </div>
+                <!-- Events End -->
+
+                {%else%}
+
+
+
+                <div class="alert alert-warning" role="alert">
+                    Unfortunately no events was found,please check again later!
+                   </div>
+                {%endif%}
+                
+                {%if events.items | length != 0%}
+
+
+
+
+                <!-- Page Pagination Start -->
+                <div class="page-pagination">
+                    <ul class="pagination justify-content-center">
+                        {%for page_num  in events.iter_pages(left_edge=1,right_edge=1,left_current =1 ,right_current=2)%}
+                        {%if page_num%}
+                        {%if events.page == page_num%}
+                        <li><a class="active" href="{{url_for('events.event',page = page_num)}}">{{page_num}}</a></li>
+                        {%else%}
+                        <li><a  href="{{url_for('events.event',page = page_num)}}">{{page_num}}</a></li>
+                        {%endif%}
+
+                        {%else%}
+
+                        ...
+                        {%endif%}
+                        {%endfor%}
+                        
+                     <!--   <li><a href="#"><i class="far fa-angle-double-right"></i></a></li> -->
+                    </ul>
+                </div>
+                <!-- Page Pagination End -->
+
+
+
+
+
+
+
+                {%endif%}
+
+            </div>
+            <div class="col-lg-3">
+                <!-- Sidebar Widget Start -->
+                <div class="sidebar-widget-weap-02 pe-xl-6">
+
+                    <!-- Sidebar Widget Start -->
+                    <div class="sidebar-widget-02">
+                        <h4 class="sidebar-widget-02__title">Find events</h4>
+
+                        <!-- Sidebar Widget Search Start -->
+                        <div class="sidebar-widget-02__find-events">
+                            <form method="get" action="#">
+
+                                <div class="sidebar-widget-02__form">
+                                    <input type="text" class="form-control filter_start_date" autocomplete="off" readonly="" placeholder="Event from">
+                                    <span class="form-icon">
+                                    <i class="far fa-calendar"></i>
+                                </span>
+                                </div>
+
+                                <div class="sidebar-widget-02__form">
+                                    <select class="form-control">
+                                        <option value="0" selected="selected">All categories</option>
+                                        <option class="level-0" value="141">Business</option>
+                                        <option class="level-0" value="142">Community</option>
+                                        <option class="level-0" value="143">Hobbies</option>
+                                        <option class="level-0" value="144">School Activities</option>
+                                    </select>
+                                    <span class="form-icon">
+                                    <i class="far fa-chevron-down"></i>
+                                </span>
+                                </div>
+
+                                <div class="sidebar-widget-02__form">
+                                    <input type="text" class="form-control" placeholder="Location">
+                                    <span class="form-icon">
+                                    <i class="far fa-map-marker-alt"></i>
+                                </span>
+                                </div>
+
+                                <div class="sidebar-widget-02__form">
+                                    <input type="text" class="form-control" placeholder="Keyword…">
+                                    <span class="form-icon">
+                                    <i class="far fa-search"></i>
+                                </span>
+                                </div>
+
+                                <div class="sidebar-widget-02__form">
+                                    <button class="btn btn-primary btn-hover-secondary">Find events</button>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!-- Sidebar Widget Search End -->
+                    </div>
+                    <!-- Sidebar Widget End -->
+
+                    <!-- Sidebar Widget End -->
+                    <div class="sidebar-widget-02">
+                        <h4 class="sidebar-widget-02__title">Popular Events</h4>
+
+                        <ul class="sidebar-widget-02__event">
+                         
+                          {%for event in popular_events%}
+                            <li>
+                                <div class="sidebar-widget-02__event-item">
+                                    <div class="sidebar-widget-02__event-thumbnail">
+                                        <a href="#">
+                                            <img src="../static/uploads/{{event.Image}}" alt="Event" width="95" height="80">
+                                        </a>
+                                    </div>
+                                    <div class="sidebar-widget-02__event-content">
+                                        <h4 class="sidebar-widget-02__event-title"><a href="#">{{event.heading}}</a></h4>
+                                        <p class="sidebar-widget-02__event-date">{{event.start_date}} - {{event.end_date}}</p>
+                                    </div>
+                                </div>
+                            </li>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                    <!-- Sidebar Widget End -->
+                    
+
+                </div>
+                <!-- Sidebar Widget End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Event End -->
+{% endblock %}

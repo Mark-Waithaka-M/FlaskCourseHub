@@ -1,0 +1,102 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">New Event</h4>
+    {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+        <div class="form" style="background-color: white;padding: 10px;">
+
+            <form action="{{url_for('events.new_event')}}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Event Name</label>
+                    <input type="text" name="heading" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Price</label>
+                    <input type="text" name="price" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Location</label>
+                    <input type="text" name="location" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">start date</label>
+                    <input type="date" name="start-date" class="form-control" id="exampleFormControlInput1">
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">end date</label>
+                    <input type="date" name="end-date" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Attendance</label>
+                    <input type="number" name="attendance" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Image</label>
+                    <input class="form-control" name="image" type="file" id="formFile">
+                  </div>
+                  <br>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is-popular" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                    is Popular
+                    </label>
+                  </div>
+                  <br>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="isPaid" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                    is Paid
+                    </label>
+                  </div>
+                  <br>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="hasExpired" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                    has Expired
+                    </label>
+                  </div>
+                  <br>
+                  
+                  <button type="submit" class="btn btn-primary">Add</button>
+                
+                
+            </form>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+    <!--dashboard content end-->
+
+
+{%endblock%}

@@ -1,0 +1,355 @@
+{% extends 'base.html'%}
+
+{% block body %}
+  <!-- Page Banner Section Start -->
+  <div class="page-banner">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}>Home</a></li>
+                    <li class="breadcrumb-item active">My account</li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Offcanvas Start -->
+<div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+        <div class="offcanvas-logo">
+            <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+        </div>
+        <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <nav class="canvas-menu">
+            <ul class="offcanvas-menu">
+                <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                <li>
+                    <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                    
+                </li>
+                <li>
+                    <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                    
+                </li>
+                <li>
+                    <a href="#"><span>Help?</span></a>
+                    <ul class="sub-menu">
+                        
+                        <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                        <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                        <li><a href="faqs.html"><span>FAQs</span></a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>more</span></a>
+                    <ul class="sub-menu">
+                        <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                        <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                        <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                        <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                        <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                        {%if current_user.is_admin == True%}
+                        <li><a href=""><span>Admin dash</span></a></li>
+                        {%endif%}
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header User Button Start -->
+    <div class="offcanvas-user d-lg-none">
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+        </div>
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+        </div>
+    </div>
+    <!-- Header User Button End -->
+
+</div>
+<!-- Offcanvas End -->
+
+<!-- Account Section Start -->
+<div class="account-section section-padding-01">
+    <div class="container custom-container">
+
+        <!-- Account Profile Start -->
+        <div class="account-profile">
+            <div class="account-profile__avatar">
+                <img src="../static/assets/images/avatar/avatar-02.jpg" alt="Avatar">
+            </div>
+            <div class="account-profile__info">
+                <div class="account-profile__text">Hello!</div>
+                <h6 class="account-profile__name">{{current_user.firstname}} {{current_user.lastname}}</h6>
+            </div>
+        </div>
+        <!-- Account Profile End -->
+
+        <div class="row gy-6">
+            <div class="col-lg-3">
+                <!-- My Account Menu Start -->
+                <div class="my-account-menu">
+                    <ul class="nav flex-column">
+                        <li><button class="active" data-bs-toggle="tab" data-bs-target="#tab1">Dashboard</button></li>
+                        <li><button data-bs-toggle="tab" data-bs-target="#tab2">Orders</button></li>
+                    <!--    <li><button data-bs-toggle="tab" data-bs-target="#tab3">Downloads</button></li> -->
+                        <li><button data-bs-toggle="tab" data-bs-target="#tab4">Addresses</button></li>
+                      <!--  <li><button data-bs-toggle="tab" data-bs-target="#tab5">Payment methods</button></li> -->
+                        <li><button data-bs-toggle="tab" data-bs-target="#tab6">Account details</button></li>
+                        <li><a href="{{url_for('auth.logout')}}">Logout</a></li>
+                    </ul>
+                </div>
+                <!-- My Account Menu End -->
+            </div>
+            <div class="col-lg-9">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab1">
+                        <!-- Account Dashboard Start -->
+                        <div class="my-account-item dashboard">
+                            <p>Hello <strong>{{current_user.firstname}} {{current_user.lastname}}</strong> (not <strong>{{current_user.firstname}} {{current_user.lastname}}</strong>? <a href="{{url_for('auth.logout')}}">Log out</a>)</p>
+                            <p>From your account dashboard you can view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a>, and <a href="#">edit your password and account details</a>.</p>
+                        </div>
+                        <!-- Account Dashboard End -->
+                    </div>
+                    <div class="tab-pane fade" id="tab2">
+                        <!-- Account Order Start -->
+                        <div class="my-account-item oeder">
+                            <div class="my-account-item__table table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th><span>Order</span></th>
+                                            <th><span>Date</span></th>
+                                            <th><span>Status</span></th>
+                                            <th><span>Total</span></th>
+                                            <th><span>Actions</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      
+                                 {%for order in current_user.orders%}
+                                        <tr>
+                                            <td class="order">
+                                                <a href="#">#{{order.identifier}}</a>
+                                            </td>
+                                            <td class="date">
+                                                <span>{{order.date.strftime('%A, %B %d, %Y')}}</span>
+                                            </td>
+                                            <td class="status">{{order.status}}</td>
+                                            <td class="total"><span class="price">${{order.total}}<span class="separator">.00</span></span></td>
+                                            <td class="actions">
+                                                <a href="{{url_for('order.order_details',identifier=order.identifier)}}" class="btn btn-primary btn-hover-secondary">View</a>
+                                            </td>
+                                        </tr>
+                                    {%endfor%}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="my-account-item__btn">
+                                <a class="btn btn-primary btn-hover-secondary" href="#">Next</a>
+                            </div>
+                        </div>
+                        <!-- Account Order End -->
+                    </div>
+                    <div class="tab-pane fade" id="tab3">
+                        <!-- Account Downloads Start -->
+                        <div class="my-account-item downloads">
+                            <div class="edumall-notices">
+                                <p><i class="far fa-info-circle"></i> No downloads available yet.</p>
+                                <a class="notices-btn" href="#">Browse products</a>
+                            </div>
+                        </div>
+                        <!-- Account Downloads End -->
+                    </div>
+                    <div class="tab-pane fade" id="tab4">
+                        <!-- Account Addresses Start -->
+                        <div class="my-account-item addresses">
+                            <p>The following addresses will be used on the checkout page by default.</p>
+
+                            <div class="row gy-6">
+                                <div class="col-md-6">
+                                    <!-- Account Addresses Start -->
+                                    <div class="my-account-item__addresses">
+
+                                        <div class="my-account-item__addresses-header">
+                                            <h3 class="my-account-item__addresses-title">Billing address </h3>
+                                            <a href="#" class="my-account-item__addresses-edit"></a>
+                                        </div>
+
+                                        <address>{{billing_details.first_name}} {{billing_details.last_name}}<br>{{billing_details.company_name}}<br>{{billing_details.street_address}} {{billing_details.apartment}}<br><br>{{billing_details.town}}, {{billing_details.country}}</address>
+
+                                    </div>
+                                    <!-- Account Addresses End -->
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Account Addresses Start -->
+                                    <div class="my-account-item__addresses">
+
+                                        <div class="my-account-item__addresses-header">
+                                            <h3 class="my-account-item__addresses-title">Shipping address </h3>
+                                            <a href="#" class="my-account-item__addresses-edit"></a>
+                                        </div>
+
+                                        <address>{{billing_details.first_name}} {{billing_details.last_name}}<br>{{billing_details.company_name}}<br>{{billing_details.street_address}} {{billing_details.apartment}}<br><br>{{billing_details.town}}, {{billing_details.country}}</address>
+
+                                    </div>
+                                    <!-- Account Addresses End -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Account Addresses End -->
+                    </div>
+                    <div class="tab-pane fade" id="tab5">
+                        <!-- Account Payment methods Start -->
+                        <div class="my-account-item payment">
+                            <div class="my-account-item__table-payment table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Method</th>
+                                            <th>Expires</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Visa ending in 4242</td>
+                                            <td>04/24</td>
+                                            <td>
+                                                <a href="#" class="btn btn-primary btn-hover-secondary">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="my-account-item__btn">
+                                <a class="btn btn-primary btn-hover-secondary" href="#">Add payment method</a>
+                            </div>
+                        </div>
+                        <!-- Account Payment methods End -->
+                    </div>
+                    <div class="tab-pane fade" id="tab6">
+                        {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+                        <!-- Account Account details Start -->
+                        <div class="my-account-item account">
+                            <form action="{{url_for('auth.edit_user_details')}}" method='post'>
+                                <div class="row gy-4">
+                                    <div class="col-md-6">
+                                        <!-- Account Account details Start -->
+                                        <div class="my-account-item__input">
+                                            <label class="form-label">First name *</label>
+                                            <input name="first_name" type="text" class="form-control" placeholder="Your Name *">
+                                        </div>
+                                        <!-- Account Account details End -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Account Account details Start -->
+                                        <div class="my-account-item__input">
+                                            <label class="form-label">Last name *</label>
+                                            <input name="last_name" type="text" class="form-control" placeholder="Last Name *">
+                                        </div>
+                                        <!-- Account Account details End -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Account Account details Start -->
+                                        <div class="my-account-item__input">
+                                            <label class="form-label">Display name *</label>
+                                            <input name="user_name" type="text" class="form-control" placeholder="Display Name *">
+                                            <em>This will be how your name will be displayed in the account section and in reviews</em>
+                                        </div>
+                                        <!-- Account Account details End -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Account Account details Start -->
+                                        <div class="my-account-item__input">
+                                            <label class="form-label">Email Address *</label>
+                                            <input name="email" type="text" class="form-control" placeholder="Email Address *">
+                                        </div>
+                                        <!-- Account Account details End -->
+                                    </div>
+                                </div>
+
+                                <div class="my-account-item__password">
+                                    <span class="legend">Password change</span>
+
+                                    <!-- Account Account details Start -->
+                                    <div class="my-account-item__input">
+                                        <label class="form-label">Current password</label>
+                                        <input name="current_password" type="password" class="form-control" placeholder="Your Name *">
+                                        <em>Leave blank to leave unchanged.</em>
+                                    </div>
+                                    <!-- Account Account details End -->
+
+                                    <!-- Account Account details Start -->
+                                    <div class="my-account-item__input">
+                                        <label class="form-label">New password</label>
+                                        <input name="new_password" type="password" class="form-control" placeholder="Your Name *">
+                                       <!-- <em>Leave blank to leave unchanged.</em>-->
+                                    </div>
+                                    <!-- Account Account details End -->
+
+                                    <!-- Account Account details Start -->
+                                    <div class="my-account-item__input">
+                                        <label class="form-label">Confirm New password</label>
+                                        <input name="confirm_new_password" type="pssword" class="form-control" placeholder="Your Name *">
+                                    </div>
+                                    <!-- Account Account details End -->
+
+                                </div>
+
+                                <!-- Account Account details Start -->
+                                <div class="my-account-item__input">
+                                    <button type="submit" class="btn btn-primary btn-hover-secondary">Save changes</button>
+                                </div>
+                                <!-- Account Account details End -->
+                            </form>
+                        </div>
+                        <!-- Account Account details End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Account Section End -->
+{% endblock %}

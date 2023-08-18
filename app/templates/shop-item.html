@@ -1,0 +1,91 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">New Shop Item</h4>
+    {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+        <div class="form" style="background-color: white;padding: 10px;">
+
+            <form action="{{url_for('shopUpload.shopItemUpload')}}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Author</label>
+                    <input type="text" name="author" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">caption</label>
+                    <input type="text" name="caption" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">description</label>
+                    <input type="text" name="description" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">stock</label>
+                    <input type="number" name="stock" class="form-control" id="exampleFormControlInput1">
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">SKU</label>
+                    <input type="text" name="sku" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Language</label>
+                    <input type="text" name="language" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <label for="exampleFormControlInput1" class="form-label">Category</label>
+                  <select class="form-select" name="category" aria-label="Default select example">
+                    {%for category in categories%}
+                    <option value="{{category.id}}">{{category.category_name}}</option>
+                    {%endfor%}
+                  </select>
+                  <br>
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Image</label>
+                    <input class="form-control" name="image" type="file" id="formFile">
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-primary">Add</button>
+                
+                
+            </form>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+    <!--dashboard content end-->
+
+
+{%endblock%}

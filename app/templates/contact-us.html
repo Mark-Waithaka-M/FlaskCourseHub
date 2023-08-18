@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+
+{% block body%}
+          <!-- Page Banner Section Start -->
+          <div class="page-banner bg-color-05">
+            <div class="page-banner__wrapper">
+                <div class="container">
+
+                    <!-- Page Breadcrumb Start -->
+                    <div class="page-breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}>Home</a></li>
+                            <li class="breadcrumb-item active">Contact us</li>
+                        </ul>
+                    </div>
+                    <!-- Page Breadcrumb End -->
+
+                    <!-- Page Banner Caption Start -->
+                    <div class="page-banner__caption text-center">
+                        <h2 class="page-banner__main-title">Contact us</h2>
+                    </div>
+                    <!-- Page Banner Caption End -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner Section End -->
+
+        <!-- Offcanvas Start -->
+        <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+            <div class="offcanvas-header bg-white">
+                <div class="offcanvas-logo">
+                    <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+                </div>
+                <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <nav class="canvas-menu">
+                    <ul class="offcanvas-menu">
+                        <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                        <li>
+                            <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                            
+                        </li>
+                        <li>
+                            <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                            
+                        </li>
+                        <li>
+                            <a href="#"><span>Help?</span></a>
+                            <ul class="sub-menu">
+                                
+                                <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                                <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                                <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                                <li><a href="faqs.html"><span>FAQs</span></a></li>
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span>more</span></a>
+                            <ul class="sub-menu">
+                                <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                                <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                                <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                                <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                                <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                                {%if current_user.is_admin == True%}
+                                <li><a href=""><span>Admin dash</span></a></li>
+                                {%endif%}
+                            </ul>
+                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header User Button Start -->
+            <div class="offcanvas-user d-lg-none">
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+                </div>
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+                </div>
+            </div>
+            <!-- Header User Button End -->
+
+        </div>
+        <!-- Offcanvas End -->
+
+        <!-- Contact us Section Start -->
+        <div class="contact-section">
+            <div class="container custom-container">
+
+                <div class="section-padding-02">
+                    <div class="row gy-8 justify-content-between">
+                        <div class="col-lg-4">
+                            <!-- Contact Info Start -->
+                            <div class="contact-info">
+
+                                <!-- Section Title Start -->
+                                <div class="section-title text-center text-lg-start" data-aos="fade-up" data-aos-duration="1000">
+                                    <h2 class="section-title__title-02">Keep In Touch <br> With Us.</h2>
+                                </div>
+                                <!-- Section Title End -->
+
+                                <div class="contact-info__wrapper" data-aos="fade-up" data-aos-duration="1000">
+
+                                    <!-- Contact Info Start -->
+                                    <div class="contact-info__item-02 text-center text-lg-start">
+                                        <div class="d-lg-flex gap-4 mb-4">
+                                            <div class="contact-info__icon">
+                                                <i class="fal fa-map-marker-alt"></i>
+                                            </div>
+                                            <div class="contact-info__content">
+                                                <h3 class="contact-info__title">Address</h3>
+                                            </div>
+                                        </div>
+                                        <p>1800 Abbot Kinney Blvd. Unit D & E Venice</p>
+                                    </div>
+                                    <!-- Contact Info End -->
+
+                                    <!-- Contact Info Start -->
+                                    <div class="contact-info__item-02 text-center text-lg-start">
+                                        <div class="d-lg-flex gap-4 mb-4">
+                                            <div class="contact-info__icon">
+                                                <i class="fal fa-mobile-alt"></i>
+                                            </div>
+                                            <div class="contact-info__content">
+                                                <h3 class="contact-info__title">Phone</h3>
+                                            </div>
+                                        </div>
+                                        <p>Mobile: <strong> (+254) - 0768 - 669397</strong></p>
+                                        <p>Hotline: <strong>0715 - 328558</strong></p>
+                                    </div>
+                                    <!-- Contact Info End -->
+
+                                    <!-- Contact Info Start -->
+                                    <div class="contact-info__item-02 text-center text-lg-start">
+                                        <div class="d-lg-flex gap-4 mb-4">
+                                            <div class="contact-info__icon">
+                                                <i class="fal fa-comment-alt-lines"></i>
+                                            </div>
+                                            <div class="contact-info__content">
+                                                <h3 class="contact-info__title">Email</h3>
+                                            </div>
+                                        </div>
+                                        <p>markwaithaka43@gmail.com</p>
+                                        <p>markwaithaka1@gmail.com.com</p>
+                                    </div>
+                                    <!-- Contact Info End -->
+
+                                </div>
+
+                            </div>
+                            <!-- Contact Info End -->
+                        </div>
+                        <div class="col-lg-7">
+                            <!-- Contact Map Start -->
+                            <div class="contact-map-02" data-aos="fade-up" data-aos-duration="1000">
+                                <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=Mission%20District%2C%20San%20Francisco%2C%20CA%2C%20USA&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
+                            </div>
+                            <!-- Contact Map End -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-padding-01">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-4">
+
+                            <!-- Section Title Start -->
+                            <div class="section-title text-center text-lg-start" data-aos="fade-up" data-aos-duration="1000">
+                                <h2 class="section-title__title-02">Send a Message</h2>
+                            </div>
+                            <!-- Section Title End -->
+
+                        </div>
+                        <div class="col-lg-7">
+                            <!-- Contact Form Wrapper Start -->
+                            <div class="contact-form__wrapper" data-aos="fade-up" data-aos-duration="1000">
+                                <div class="row gy-4">
+                                    <div class="col-md-6">
+                                        <div class="contact-form__input">
+                                            <input class="form-control" type="text" name="name" placeholder="Your name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contact-form__input">
+                                            <input class="form-control" type="email" name="email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="contact-form__input">
+                                            <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="contact-form__input text-center">
+                                            <button class="btn btn-primary btn-hover-secondary">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Contact Form Wrapper End -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Contact us Section End -->
+{% endblock %}

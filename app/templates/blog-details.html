@@ -1,0 +1,549 @@
+{% extends 'base.html' %}
+
+{% block body%}
+!-- Page Banner Section Start -->
+<div class="page-banner bg-color-05">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ url_for('blog.blogs') }}>Blog</a></li>
+                    <li class="breadcrumb-item active">{{blog.heading}}</li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption text-center">
+                <h2 class="page-banner__main-title">{{blog.heading}}</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Offcanvas Start -->
+        <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+            <div class="offcanvas-header bg-white">
+                <div class="offcanvas-logo">
+                    <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+                </div>
+                <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <nav class="canvas-menu">
+                    <ul class="offcanvas-menu">
+                        <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a>
+
+                            <ul class="mega-menu">
+                                <li>
+                                    <!-- Mega Menu Content Start -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-xl-3">
+                                                <div class="menu-content-list">
+                                                    <a href="index-main.html" class="menu-content-list__link">Main Demo <span class="badge hot">Hot</span></a>
+                                                    <a href="index-course-hub.html" class="menu-content-list__link">Course Hub</a>
+                                                    <a href="index-online-academy.html" class="menu-content-list__link">Online Academy <span class="badge hot">Hot</span></a>
+                                                    <a href="index-university.html" class="menu-content-list__link">University</a>
+                                                    <a href="index-education-center.html" class="menu-content-list__link">Education Center <span class="badge hot">Hot</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="menu-content-list">
+                                                    <a href="index-language-academic.html" class="menu-content-list__link">Language Academic</a>
+                                                    <a href="index-single-instructor.html" class="menu-content-list__link">Single Instructor</a>
+                                                    <a href="index-dev.html" class="menu-content-list__link">Dev <span class="badge new">New</span></a>
+                                                    <a href="index-online-art.html" class="menu-content-list__link">Online Art <span class="badge new">New</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="menu-content-banner" style="background-image: url(assets/images/home-megamenu-bg.jpg);">
+                                                    <h4 class="menu-content-banner__title">Achieve Your Goals With EduMall</h4>
+                                                    <a href="#" class="menu-content-banner__btn btn btn-primary btn-hover-secondary">Purchase now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Mega Menu Content Start -->
+                                </li>
+                            </ul>
+
+
+
+
+                        </li>
+                        <li>
+                            <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                            <ul class="sub-menu">
+                                
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                            <ul class="sub-menu">
+                                
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span>Pages</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="become-an-instructor.html"><span>Become an Instructor</span></a></li>
+                                <li>
+                                    <a href="instructors.html"><span>Instructor</span></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="dashboard-my-courses.html"><span>My Courses</span></a></li>
+                                        <li><a href="dashboard-announcement.html"><span>Announcements</span></a></li>
+                                        <li><a href="dashboard-withdraw.html"><span>Withdrawals</span></a></li>
+                                        <li><a href="dashboard-quiz-attempts.html"><span>Quiz Attempts</span></a></li>
+                                        <li><a href="dashboard-question-answer.html"><span>Question & Answer</span></a></li>
+                                        <li><a href="dashboard-assignments.html"><span>Assignments</span></a></li>
+                                        <li><a href="dashboard-students.html"><span>My Students</span></a></li>
+                                    </ul>
+                                </li>
+                                <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                                <li><a href="membership-plans.html"><span>Membership plans</span></a></li>
+                                <li><a href="faqs.html"><span>FAQs</span></a></li>
+                                <li>
+                                    <a href="#"><span>Dashboard</span></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="dashboard-index.html"><span>Dashboard</span></a></li>
+                                        <li><a href="dashboard-student-index.html"><span>Dashboard Student</span></a></li>
+                                        <li><a href="dashboard-profile.html"><span>My Profile</span></a></li>
+                                        <li><a href="dashboard-all-course.html"><span>Enrolled Courses</span></a></li>
+                                        <li><a href="dashboard-wishlist.html"><span>Wishlist</span></a></li>
+                                        <li><a href="dashboard-reviews.html"><span>Reviews</span></a></li>
+                                        <li><a href="dashboard-my-quiz-attempts.html"><span>My Quiz Attempts</span></a></li>
+                                        <li><a href="dashboard-purchase-history.html"><span>Purchase History</span></a></li>
+                                        <li><a href="dashboard-settings.html"><span>Settings</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span>Features</span></a>
+                            <ul class="sub-menu">
+                                <li><a href={{ url_for('events.event') }}><span>Events</span></a>
+                                    <ul class="sub-menu">
+                                        
+                                       
+                                    </ul>
+                                </li>
+                                
+                                <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a>
+                                    <ul class="sub-menu">
+                                            <li><a href="my-account.html"><span>My account</span></a></li>
+                                            <li><a href="wishlist.html"><span>Wishlist</span></a></li>
+                                            <li><a href="cart.html"><span>Cart</span></a></li>                         
+                                            <li><a href="checkout.html"><span>Checkout</span></a></li>
+                                        
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header User Button Start -->
+            <div class="offcanvas-user d-lg-none">
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+                </div>
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+                </div>
+            </div>
+            <!-- Header User Button End -->
+
+        </div>
+        <!-- Offcanvas End -->
+<!-- Offcanvas Start -->
+<div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+        <div class="offcanvas-logo">
+            <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+        </div>
+        <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <nav class="canvas-menu">
+            <ul class="offcanvas-menu">
+                <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                <li>
+                    <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                    
+                </li>
+                <li>
+                    <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                    
+                </li>
+                <li>
+                    <a href="#"><span>Help?</span></a>
+                    <ul class="sub-menu">
+                        
+                        <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                        <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                        <li><a href="faqs.html"><span>FAQs</span></a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>more</span></a>
+                    <ul class="sub-menu">
+                        <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                        <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                        <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                        <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                        <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                        {%if current_user.is_admin == True%}
+                        <li><a href=""><span>Admin dash</span></a></li>
+                        {%endif%}
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header User Button Start -->
+    <div class="offcanvas-user d-lg-none">
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+        </div>
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+        </div>
+    </div>
+    <!-- Header User Button End -->
+
+</div>
+<!-- Offcanvas End -->
+
+<!-- Blog Start -->
+<div class="blog-section section-padding-01">
+    <div class="container custom-container">
+        <div class="row gy-10 flex-row-reverse">
+            <div class="col-lg-8">
+
+                <!-- Blog Dtails Start -->
+                <div class="blog-details">
+
+                    <div class="blog-details__image">
+                        <img src="../static/uploads/{{blog.Image}}" alt="Blog" width="770" height="418">
+                     
+                    </div>
+
+                    <div class="blog-details__content">
+                        <div class="blog-details__meta">
+                          
+                            <a class="meta-action" href="#">
+                                <img class="meta-action__avatar" src="{{url_for('static' ,filename = 'uploads/' + blog.blog_creators.Image | string)}}" alt="Avatar" width="32" height="32">
+                                <span class="meta-action__value">{{blog.blog_creators.name}}</span>
+                            </a>
+                   
+                            <span class="meta-action"><i class="far fa-calendar"></i> <span class="meta-action__value">{{blog.created_at.strftime("%B %d, %Y")}}</span></span>
+                            <span class="meta-action"><i class="far fa-eye"></i> <span class="meta-action__value">757 views</span></span>
+                            <a class="meta-action" href="#"><i class="far fa-comment-alt-lines"></i> <span class="meta-action__value">0 comments</span></a>
+                        </div>
+                        <h3 class="blog-details__title">{{blog.heading}}</h3>
+                       
+                        <blockquote class="blockquote">
+                            <p>{{blog.highlight}}</p>
+                        </blockquote>
+                        {%for heading in blog.subheadings%}
+                        <p><strong>{{heading.heading}}</strong></p>
+
+                        {%for paragraph in heading.paragraphs%}
+                        <p>
+                            {{paragraph.content}}
+                        </p>
+
+                        {%endfor%}
+
+
+                        {%endfor%}
+                        
+                    </div>
+
+                    <div class="blog-details__footer">
+
+                     <!--   <div class="blog-details__tags">
+                            <span class="blog-details__tags-label"><i class="fal fa-tags"></i></span>
+                            <div class="blog-details__tags-list">
+                                <a href="#"> {{blog.subject}}</a>
+                                <a href="#"> {{blog.subject}}</a>
+                            </div>
+                        </div> -->
+
+                    <!--   <div class="blog-details__share">
+                            <span class="blog-details__share-label">Share this post</span>
+
+                           
+
+                            <div class="blog-details__share-media">
+                                <div class="blog-details__share-icon">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                                <ul class="blog-details__share-social">
+                                    <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Tumblr"><i class="fab fa-tumblr-square"></i></a></li>
+                                    <li><a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Email"><i class="fas fa-envelope"></i></a></li>
+                                </ul>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    {%if  barner_posts.items | length >= 2 %}
+
+                    <div class="blog-details__nav">
+                        <div class="blog-details__nav-item prev">
+                            <a class="blog-details__nav-link" href="{{url_for('blog.blogDetails',id = barner_posts.items[0].id)}}">
+                                <div class="blog-details__hover-bg" style="background-image: url(assets/images/blog/blog-11.jpg);"></div>
+                                <span class="text">{{barner_posts.items[0].heading}}</span>
+                            </a>
+                        </div>
+                        <div class="blog-details__nav-item next">
+                            <a class="blog-details__nav-link" href="{{url_for('blog.blogDetails',id = barner_posts.items[1].id)}}">
+                                <div class="blog-details__hover-bg" style="background-image: url(assets/images/blog/blog-13.jpg);"></div>
+                                <span class="text">{{barner_posts.items[1].heading}}</span>
+                            </a>
+                        </div>
+                    </div>
+                    {%endif%}
+
+                </div>
+                <!-- Blog Dtails End -->
+
+                
+{%if related_posts.items | length != 0%}
+                <!-- Related Post Start -->
+                <div class="related-post mt-8">
+                    <h3 class="related-post__title">Related Posts</h3>
+
+                    <div class="related-posts swiper-button-style">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    {%for item in related_posts.items%}
+                                    <!-- Related Post Item Start -->
+                                    <div class="related-post-item">
+                                        <div class="related-post-item__image">
+                                            <a href={{ url_for('blog.blogDetails', id = blog.id) }}><img src="{{url_for('static',filename = 'uploads/' + item.Image | string)}}" alt="Blog"></a>
+                                        </div>
+                                        <div class="related-post-item__content">
+                                            <h3 class="related-post-item__title"><a href={{ url_for('blog.blogDetails',id = blog.id) }}>{{item.heading}}</a></h3>
+                                            <div class="related-post-item__meta">
+                                                <span class="meta-action"><i class="far fa-calendar"></i> {{blog.created_at.strftime("%B %d, %Y")}}</span>
+                                                <span class="meta-action"><i class="far fa-eye"></i> 4,036 views</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Related Post Item End -->
+                                    {%endfor%}
+
+                                  
+
+                                </div>
+                               
+                            </div>
+                        </div>
+
+                        <div class="swiper-button-next"><i class="fal fa-angle-right"></i></div>
+                        <div class="swiper-button-prev"><i class="fal fa-angle-left"></i></div>
+                    </div>
+
+                </div>
+                <!-- Related Post End -->
+                {%endif%}
+
+                <!-- Comment Start -->
+                <div class="comments-area">
+
+                    <!-- Comment Wrapper Start -->
+                    <div class="comment-wrap mt-8">
+                        <h3 class="comment-title">Leave your thought here</h3>
+                        <p>Your email address will not be published. Required fields are marked *</p>
+
+                        <!-- Comment Form Start -->
+                        <div class="comment-form">
+                            <form action="#">
+                                <div class="row gy-4">
+                                    <div class="col-md-6">
+                                        <div class="comment-form__input">
+                                            <input type="text" class="form-control" placeholder="Your Name *">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="comment-form__input">
+                                            <input type="email" class="form-control" placeholder="Your Email *">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="comment-form__input">
+                                            <textarea class="form-control" placeholder="Your Comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="comment-form__input form-check">
+                                            <input type="checkbox" id="save">
+                                            <label for="save">Save my name, email, and website in this browser for the next time I comment.</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="comment-form__input">
+                                            <button class="btn btn-primary btn-hover-secondary">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Comment Form End -->
+
+                    </div>
+                    <!-- Comment Wrapper End -->
+
+                </div>
+                <!-- Comment End -->
+
+            </div>
+            <div class="col-lg-4">
+                <!-- Sidebar Widget Start -->
+                <div class="sidebar-widget-weap-02 pe-xl-6">
+
+                    <!-- Sidebar Widget Start -->
+                    <div class="sidebar-widget-02">
+                        <h4 class="sidebar-widget-02__title">Search</h4>
+
+                        <!-- Sidebar Widget Search Start -->
+                        <div class="sidebar-widget-02-search">
+                            <form method="get" action="/blog/search">
+                                <input type="search" name="q" class="sidebar-widget-02-search__field" placeholder="Search…">
+                                <button type="submit" class="sidebar-widget-02-search__submit">
+                                    <span class="search-btn-icon fas fa-search"></span>
+                                </button>
+                            </form>
+                        </div>
+                        <!-- Sidebar Widget Search End -->
+                    </div>
+                    <!-- Sidebar Widget End -->
+
+                    <!-- Sidebar Widget Start -->
+                    <div class="sidebar-widget-02">
+                        <h4 class="sidebar-widget-02__title">Categories</h4>
+
+                        <!-- Sidebar Widget Search Start -->
+                        <ul class="sidebar-widget-02__link">
+                            {%for category in categories%}
+                            <li><a href="#">{{category.category_name}}<span class="count">({{category.blogs | length}})</span> </a></li>
+                            {%endfor%}
+                        </ul>
+                        <!-- Sidebar Widget Search End -->
+                    </div>
+                    <!-- Sidebar Widget End -->
+
+                    <!-- Sidebar Widget Start -->
+                    <div class="sidebar-widget-02">
+                        <h4 class="sidebar-widget-02__title">Latest Posts</h4>
+
+                        <!-- Sidebar Widget Search Start -->
+                        <ul class="sidebar-widget-02__psot">
+                            {%for blog in latest_blogs.items%}
+                            <li>
+                                <div class="sidebar-widget-02__psot-item">
+                                    <div class="sidebar-widget-02__psot-thumbnail ">
+                                        <a href={{ url_for('blog.blogDetails', id = blog.id) }}>
+                                            <img src="{{url_for('static',filename = 'uploads/' + blog.Image | string)}}" alt="Blog" width="100" height="80">
+                                            <div class="sidebar-widget-02__categories">
+                                                <span>{{blog.blog_category.category_name}}</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="sidebar-widget-02__psot-info">
+                                        <h5 class="sidebar-widget-02__psot-title"><a href={{ url_for('blog.blogDetails', id = blog.id) }}>{{blog.heading}}</a></h5>
+                                        <span class="sidebar-widget-02__psot-date">{{blog.created_at.strftime("%B %d, %Y")}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                            {%endfor%}
+                           
+                         
+                        </ul>
+                        <!-- Sidebar Widget Search End -->
+                    </div>
+                    <!-- Sidebar Widget End -->
+
+                    <!-- Sidebar Widget Start 
+                    <div class="sidebar-widget-02">
+                        <h4 class="sidebar-widget-02__title">Popular Tags</h4>
+
+                        <!-- Sidebar Widget Search Start
+                        <ul class="sidebar-widget-02__tags">
+                            <li><a href="#">data science</a></li>
+                            <li><a href="#">deep learning</a></li>
+                            <li><a href="#">education</a></li>
+                            <li><a href="#">language</a></li>
+                            <li><a href="#">learning</a></li>
+                            <li><a href="#">machine learning</a></li>
+                            <li><a href="#">tips</a></li>
+                            <li><a href="#">videos</a></li>
+                            <li><a href="#">web development</a></li>
+                        </ul>
+                        <!-- Sidebar Widget Search End 
+                    </div>
+                    <!-- Sidebar Widget End -->
+
+                </div>
+                <!-- Sidebar Widget End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
+
+{% endblock %}

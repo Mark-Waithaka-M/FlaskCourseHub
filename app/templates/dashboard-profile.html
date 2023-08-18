@@ -1,0 +1,77 @@
+{%extends 'dashboard-base.html'%}
+
+
+{%block body%}
+
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">My Profile</h4>
+
+        <!-- Dashboard Profile Start -->
+        <div class="dashboard-profile">
+
+            <div class="dashboard-profile__item">
+                <div class="dashboard-profile__heading">Registration Date</div>
+                <div class="dashboard-profile__content">
+                    <p>{{current_user.date_created.strftime("%Y-%m-%d %H:%M:%S")}}</p>
+                </div>
+            </div>
+            <div class="dashboard-profile__item">
+                <div class="dashboard-profile__heading">First Name</div>
+                <div class="dashboard-profile__content">
+                    <p>{{current_user.firstname}}</p>
+                </div>
+            </div>
+            <div class="dashboard-profile__item">
+                <div class="dashboard-profile__heading">Last Name</div>
+                <div class="dashboard-profile__content">
+                    <p>{{current_user.lastname}}</p>
+                </div>
+            </div>
+            <div class="dashboard-profile__item">
+                <div class="dashboard-profile__heading">Username</div>
+                <div class="dashboard-profile__content">
+                    <p>{{current_user.user_name}}</p>
+                </div>
+            </div>
+            <div class="dashboard-profile__item">
+                <div class="dashboard-profile__heading">Email</div>
+                <div class="dashboard-profile__content">
+                    <p>{{current_user.email}}</p>
+                </div>
+            </div>
+           <!--- <div class="dashboard-profile__item">
+                <div class="dashboard-profile__heading">Phone Number</div>
+                <div class="dashboard-profile__content">
+                    <p></p>
+                </div>
+            </div> -->
+            <div class="dashboard-profile__item">
+                <div class="dashboard-profile__heading">Job Title</div>
+                <div class="dashboard-profile__content">
+                    <p>{{current_user.job_title}}</p>
+                </div>
+            </div>
+            <div class="dashboard-profile__item">
+                <div class="dashboard-profile__heading">Bio</div>
+                <div class="dashboard-profile__content">
+                    <p>{{current_user.bio}}</p>
+                </div>
+            </div>
+
+        </div>
+        <!-- Dashboard Profile End -->
+    </div>
+
+
+</div>
+<!-- Dashboard Content End -->
+
+
+
+
+
+
+{%endblock%}

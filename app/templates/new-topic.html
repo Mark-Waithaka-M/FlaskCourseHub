@@ -1,0 +1,68 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">New Topic</h4>
+    {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+        <div class="form" style="background-color: white;padding: 10px;">
+
+            <form action="{{url_for('course_content.new_topic')}}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Topic</label>
+                    <input type="text" name="topic" class="form-control" id="exampleFormControlInput1" >
+                  </div><br>
+
+                  <label for="exampleFormControlInput1" class="form-label">Course</label>
+                  <select name="course" class="form-select" aria-label="Default select example">
+                    {%for course in courses%}
+               <option value="{{course.id}}">{{course.name}}</option>
+                    {%endfor%}
+
+                    
+                  </select>
+                  <br>
+
+
+          
+                  <div class="row">
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                    <br>
+                  
+                  </div>
+                
+                
+           
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+    <!--dashboard content end-->
+
+
+{%endblock%}

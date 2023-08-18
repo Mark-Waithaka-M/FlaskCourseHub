@@ -1,0 +1,86 @@
+{%extends 'dashboard-base.html'%}
+
+
+{%block body%}
+   <!-- Dashboard Content Start -->
+   <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">Enrolled Courses</h4>
+
+        <!-- Dashboard Course Start -->
+        <div class="dashboard-course">
+
+            <!-- Dashboard Tabs Start -->
+            <div class="dashboard-tabs-menu">
+                <ul>
+                    <li><a class="active" href="#">All Courses</a></li>
+                    <li><a href="#">Active Courses</a></li>
+                    <li><a href="#">Completed Courses</a></li>
+                </ul>
+            </div>
+            <!-- Dashboard Tabs End -->
+
+            <!-- Dashboard Course List Start -->
+            <div class="dashboard-course-list">
+                {%for course in current_user.enrolled%}
+
+                <!-- Dashboard Course Item Start -->
+                <div class="dashboard-course-item">
+                    <a class="dashboard-course-item__link" href="course-single-layout-01.html">
+                        <div class="dashboard-course-item__thumbnail">
+                            <img src="../static/uploads/{{course.Image}}" alt="Courses" width="260" height="160">
+                        </div>
+                        <div class="dashboard-course-item__content">
+                          <!---  <div class="dashboard-course-item__rating">
+                                <div class="rating-star">
+                                    <div class="rating-label" style="width: 80%;"></div>
+                                </div>
+                            </div> -->
+
+                            <h3 class="dashboard-course-item__title">{{course.name}}</h3>
+                            <div class="dashboard-course-item__meta">
+                                <ul class="dashboard-course-item__meta-list">
+                                    <li>
+                                        <span class="meta-label">Total Lessons:</span>
+                                        <span class="meta-value">{{course.lectures}}</span>
+                                    </li>
+                                    <li>
+                                        <span class="meta-label">Completed Lessons:</span>
+                                        <span class="meta-value">0/{{course.lectures}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="dashboard-course-item__progress-bar-wrap">
+                                <div class="dashboard-course-item__progress-bar">
+                                    <div class="dashboard-course-item__progress-bar-line" style="width: 0%;"></div>
+                                </div>
+                                <div class="dashboard-course-item__progress-bar-text">0% Complete</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Dashboard Course Item End -->
+                {%endfor%}
+
+
+               
+
+
+            
+
+
+            </div>
+            <!-- Dashboard Course List End -->
+
+        </div>
+        <!-- Dashboard Course End -->
+    </div>
+
+
+</div>
+<!-- Dashboard Content End -->
+
+
+
+{%endblock%}

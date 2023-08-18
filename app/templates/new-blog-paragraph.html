@@ -1,0 +1,70 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">New Blog Paragraph</h4>
+    {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+        <div class="form" style="background-color: white;padding: 10px;">
+
+            <form action="{{url_for('BlogUpload.new_blog_paragraph',id = blog.id)}}" method="post" enctype="multipart/form-data">
+                <label for="exampleFormControlTextarea1" class="form-label">Heading</label>
+                <select class="form-select" name="heading" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    {%for heading in blog.subheadings%}
+                    <option value="{{heading.id}}">{{heading.heading}}</option>
+                    {%endfor%}
+                
+                  </select>
+
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Paragraph</label>
+                  <textarea name="paragraph" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                </div>
+                  <div class="row">
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                    <br>
+                    <div class="col-md-1">
+                        <a href="{{url_for('blog.blogDetails',id=blog.id)}}"> 
+                            <button type="button" class="btn btn-primary">view Blog</button> 
+                        </a>
+
+
+                    </div>
+                  </div>
+                
+                
+           
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+    <!--dashboard content end-->
+
+
+{%endblock%}

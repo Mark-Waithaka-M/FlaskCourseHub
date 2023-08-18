@@ -1,0 +1,170 @@
+{% extends 'base.html'%}
+
+{% block body %}
+   <!-- Page Banner Section Start -->
+   <div class="page-banner bg-color-05">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}>Home</a></li>
+                    <li class="breadcrumb-item active">Wishlist</li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption text-center">
+                <h2 class="page-banner__main-title">Wishlist</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Offcanvas Start -->
+<div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+        <div class="offcanvas-logo">
+            <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+        </div>
+        <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <nav class="canvas-menu">
+            <ul class="offcanvas-menu">
+                <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                <li>
+                    <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                    
+                </li>
+                <li>
+                    <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                    
+                </li>
+                <li>
+                    <a href="#"><span>Help?</span></a>
+                    <ul class="sub-menu">
+                        
+                        <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                        <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                        <li><a href="faqs.html"><span>FAQs</span></a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>more</span></a>
+                    <ul class="sub-menu">
+                        <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                        <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                        <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                        <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                        <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                        {%if current_user.is_admin == True%}
+                        <li><a href=""><span>Admin dash</span></a></li>
+                        {%endif%}
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header User Button Start -->
+    <div class="offcanvas-user d-lg-none">
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+        </div>
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+        </div>
+    </div>
+    <!-- Header User Button End -->
+
+</div>
+<!-- Offcanvas End -->
+
+<!-- Wishlist Section Start -->
+<div class="wishlist-section section-padding-01">
+    <div class="container custom-container">
+
+        <!-- Cart Table Start -->
+        <div class="cart-table table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="product">Product</th>
+                        <th class="price">Price</th>
+                        <th class="stock">Stock</th>
+                        <th class="add-cart">Enroll</th>
+                        <th class="action"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for item in current_user.wishlist_items%}
+                    <tr>
+                        <td class="product">
+                            <div class="cart-product">
+                                <div class="cart-product__thumbnail">
+                                    <img src="../static/uploads/{{item.image}}" alt="Product" width="70" height="80">
+                                </div>
+                                <div class="cart-product__content">
+                                    <h3 class="cart-product__name">{{item.name}}</h3>
+                                    <p class="cart-product__date">{{item.date.strftime("%Y-%m-%d %H:%M:%S")}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="price">
+                            <div class="cart-product__price">
+                                <span class="sale-price">${{item.course.price()}}.<small class="separator">00</small></span>
+                            </div>
+                        </td>
+                       
+                        <td class="stock">
+                            <span class="in-stock">In stock</span>
+                        </td>
+                       
+                      
+                        <td class="add-cart">
+                            <a href="{{url_for('course.enroll_to_course',course_name = item.course.name)}}">                            <button class="btn btn-primary btn-hover-secondary">Enroll</button>
+                            </a>
+                        </td>
+                        <td class="action">
+                            <div class="cart-product__remove">
+                                <a class="remove" href="/remove-from-wishlist/{{item.name}}">Remove</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                   
+                  
+                </tbody>
+            </table>
+        </div>
+        <!-- Cart Table End -->
+
+    </div>
+</div>
+<!-- Wishlist Section End -->
+{% endblock %}

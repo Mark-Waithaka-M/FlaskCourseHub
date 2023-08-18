@@ -1,0 +1,118 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">Blogs</h4>
+        <div class="row">
+          <div class="col-md-2">
+              <a href="{{url_for('BlogUpload.blogUpload')}}">
+                  <button class='btn btn-primary'>New Blog</button>
+                </a>
+          </div>
+          <br>
+          <div class="col-md-2">
+              <a href="{{url_for('dashboard.dashboard_blog_categories')}}">
+                  <button class='btn btn-primary'>Blog Categories</button>
+                </a>
+          </div>
+          <br>
+          <div class="col-md-2">
+            <a href="{{url_for('dashboard.dashboard_blog_creators')}}">
+                <button class='btn btn-primary'>Blog Authors</button>
+              </a>
+        </div>
+      </div>
+      <br>
+      {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+        <br>
+        <table class="table" style="background-color:white;padding:10px;border-radius:15px;">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">category</th>
+                <th scope="col">author</th>
+                <th scope="col">date created</th>
+                <th scope="col">Actions</th>
+
+              
+              </tr>
+            </thead>
+            <tbody>
+              {%if blogs | length == 0%}
+              <div class="alert alert-warning" role="alert">
+                There are no blogs on the platform,kindly use the button above to create a new course!
+            </div>
+            {%endif%}
+           
+                {%for blog in blogs%}
+              <tr>
+                <th>
+                    <img src="{{url_for('static',filename = 'uploads/' + blog.Image | string)}}" alt="{{blog.heading}}" width="200px" height="150px">
+                </th>
+                <th scope="row">{{blog.heading}}</th>
+                <td>{{blog.blog_category.category_name}}</td>
+                <td>{{blog.blog_creators.name}}</td>
+                <td>{{blog.created_at.strftime("%B %d, %Y")}}</td>
+        
+                <td>
+                  <div class="row">
+                    <div class="col-md-4" ">
+                      <a href="{{url_for('blog.blogDetails',id=blog.id)}}"><button class="btn btn-primary">view</button></a>
+                    </div>
+                    
+                    
+                    <div class="col-md-3">
+                      <a href="{{url_for('BlogUpload.delete_blog',id = blog.id)}}"><button class="btn btn-danger">delete</button></a>
+                    </div>
+
+                  </div>
+                  
+                </td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+        <!--dashboard content end-->
+
+
+
+{%endblock%}

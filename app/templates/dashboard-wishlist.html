@@ -1,0 +1,58 @@
+{%extends 'dashboard-base.html'%}
+
+
+{%block body%}
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">Wishlist</h4>
+
+        <!-- Dashboard Wishlist Start -->
+        <div class="dashboard-wishlist">
+            <div class="row gy-6">
+                {%for item in current_user.wishlist_items%}
+                <div class="col-xxl-3 col-lg-4 col-md-6">
+
+                    <!-- Course Start -->
+                    <div class="course-item-02" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="course-header">
+                            <div class="course-header__thumbnail rounded-0">
+                                <a href="{{url_for('course.courseDetails',name = item.course.name)}}"><img src="../static/uploads/{{item.course.Image}}" alt="courses" width="330" height="220"></a>
+                            </div>
+                        </div>
+                        <div class="course-info-02">
+                            <span class="course-info-02__badge-text badge-all">{{item.course.level}}</span>
+                          <!--  <div class="course-info-02__category">
+                                <a href="#"></a>
+                            </div> -->
+                            <h3 class="course-info-02__title"><a href="course-single-layout-01.html">{{item.course.name}}</a></h3>
+                            <div class="course-info-02__description">
+                                <p>If you’re someone who has a LOT on their plate …</p>
+                            </div>
+                            <div class="course-info-02__price">
+                                <span class="sale-price">${{item.course.price()}}.<small class="separator">00</small></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Course End -->
+
+                </div>
+                {%endfor%}
+               
+                
+             
+               
+                
+                
+              
+            </div>
+        </div>
+        <!-- Dashboard Wishlist End -->
+    </div>
+
+
+</div>
+<!-- Dashboard Content End -->
+
+{%endblock%}

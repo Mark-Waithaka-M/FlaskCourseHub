@@ -1,0 +1,93 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">New Blog</h4>
+    {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+        <div class="form" style="background-color: white;padding: 10px;">
+            <p>Create new blog below</p>
+
+            <form action="{{url_for('BlogUpload.blogUpload')}}" method="post" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Heading</label>
+                    <input type="text" name="heading" class="form-control" id="exampleFormControlInput1">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Highlight</label>
+                    <textarea class="form-control" name="highlight" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">caption</label>
+                    <textarea name="caption" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+
+                  <label for="exampleFormControlTextarea1" class="form-label">Category</label>
+                  <select name="category" class="form-select" aria-label="Default select example">
+
+
+                    {%for category in categories%}
+                    <option value="{{category.id}}">{{category.category_name}}</option>
+                    {%endfor%}
+                    
+                  </select>
+                  
+                  <label for="exampleFormControlTextarea1" class="form-label">Author</label>
+                  <select name="author" class="form-select" aria-label="Default select example">
+
+
+                    {%for author in authors%}
+                    <option value="{{author.id}}">{{author.name}}</option>
+                    {%endfor%}
+                    
+                  </select>
+
+
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">Image</label>
+                    <input class="form-control" name="image" type="file" id="formFile">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary">Add Blog</button>
+                    </div>
+                </form>
+                    <br>
+                
+                  </div>
+                
+                
+           
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+    <!--dashboard content end-->
+
+
+{%endblock%}

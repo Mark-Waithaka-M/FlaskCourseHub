@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+
+{% block body%}
+           <!-- Page Banner Section Start -->
+           <div class="page-banner bg-color-05">
+            <div class="page-banner__wrapper">
+                <div class="container">
+
+                    <!-- Page Breadcrumb Start -->
+                    <div class="page-breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}">Home</a></li>
+                            <li class="breadcrumb-item active">Blog</li>
+                        </ul>
+                    </div>
+                    <!-- Page Breadcrumb End -->
+
+                    <!-- Page Banner Caption Start -->
+                    <div class="page-banner__caption text-center">
+                        <h2 class="page-banner__main-title">Latest news <br> are on top all times</h2>
+                    </div>
+                    <!-- Page Banner Caption End -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner Section End -->
+
+        <!-- Offcanvas Start -->
+        <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+            <div class="offcanvas-header bg-white">
+                <div class="offcanvas-logo">
+                    <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+                </div>
+                <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <nav class="canvas-menu">
+                    <ul class="offcanvas-menu">
+                        <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                        <li>
+                            <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                            
+                        </li>
+                        <li>
+                            <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                            
+                        </li>
+                        <li>
+                            <a href="#"><span>Help?</span></a>
+                            <ul class="sub-menu">
+                                
+                                <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                                <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                                <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                                <li><a href="faqs.html"><span>FAQs</span></a></li>
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span>more</span></a>
+                            <ul class="sub-menu">
+                                <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                                <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                                <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                                <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                                <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                                {%if current_user.is_admin == True%}
+                                <li><a href=""><span>Admin dash</span></a></li>
+                                {%endif%}
+                            </ul>
+                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header User Button Start -->
+            <div class="offcanvas-user d-lg-none">
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+                </div>
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+                </div>
+            </div>
+            <!-- Header User Button End -->
+
+        </div>
+        <!-- Offcanvas End -->
+
+        <!-- Blog Start -->
+        <div class="blog-section section-padding-01">
+            <div class="container custom-container">
+                <div class="row gy-10 flex-row-reverse">
+                    <div class="col-lg-8">
+
+                        <div class="row gy-6 grid">
+                            {% for blog in blogs %}
+                            <div class="col-md-6 grid-item">
+                                <!-- Blog Item Start -->
+                                <div class="blog-item-02" data-aos="fade-up" data-aos-duration="1000">
+                                    <div class="blog-item-02__image">
+                                        <a href={{ url_for('blog.blogDetails', id = blog.id) }}><img src="../static/uploads/{{blog.Image}}" alt="Blog" width="370" height="201"></a>
+                                    </div>
+                                    <div class="blog-item-02__content">
+                                        <div class="blog-item-02__meta">
+                                            <span class="meta-action"><i class="far fa-calendar"></i> {{blog.created_at.strftime('%A, %B %d, %Y')}}</span>
+                                            <span class="meta-action"><i class="far fa-eye"></i> {{blog.views}} views</span>
+                                        </div>
+                                        <h3 class="blog-item-02__title"><a href={{ url_for('blog.blogDetails', id = blog.id) }}>{{blog.heading}}</a></h3>
+                                         <p>{{blog.caption}}</p> 
+                                        <a class="blog-item-02__more btn btn-light btn-hover-white" href={{ url_for('blog.blogDetails', id = blog.id) }}>Read More <i class="fal fa-long-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                                <!-- Blog Item End --> 
+                            </div><br><br>
+                           
+
+                                {% endfor %}
+                                
+                          
+                        </div>
+
+                        <!-- Page Pagination Start -->
+                        <div class="page-pagination">
+                            <ul class="pagination justify-content-center">
+                                <li><a class="active" href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">7</a></li>
+                                <li><a href="#"><i class="far fa-angle-double-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- Page Pagination End -->
+
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Sidebar Widget Start -->
+                        <div class="sidebar-widget-weap-02 pe-xl-6">
+
+                            <!-- Sidebar Widget Start -->
+                            <div class="sidebar-widget-02">
+                                <h4 class="sidebar-widget-02__title">Search</h4>
+
+                                <!-- Sidebar Widget Search Start -->
+                                <div class="sidebar-widget-02-search">
+                                    <form method="get" action="/blog/search">
+                                        <input name="q"  type="search" class="sidebar-widget-02-search__field" placeholder="Search…">
+                                        <button type="submit" class="sidebar-widget-02-search__submit">
+                                            <span class="search-btn-icon fas fa-search"></span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <!-- Sidebar Widget Search End -->
+                            </div>
+                            <!-- Sidebar Widget End -->
+
+                            <!-- Sidebar Widget Start -->
+                            <div class="sidebar-widget-02">
+                                <h4 class="sidebar-widget-02__title">Categories</h4>
+
+                                <!-- Sidebar Widget Search Start -->
+                                <ul class="sidebar-widget-02__link">
+                                    {%for category in categories%}
+                                    <li><a href="#">{{category.category_name}} <span class="count">({{category.blogs | length}})</span> </a></li>
+                                    {%endfor%}
+                              
+                                </ul>
+                                <!-- Sidebar Widget Search End -->
+                            </div>
+                            <!-- Sidebar Widget End -->
+
+                            <!-- Sidebar Widget Start -->
+                            <div class="sidebar-widget-02">
+                                <h4 class="sidebar-widget-02__title">Latest Posts</h4>
+
+                                <!-- Sidebar Widget Search Start -->
+                                <ul class="sidebar-widget-02__psot">
+                                    {%for blog in latest_blogs.items%}
+                                    <li>
+                                        <div class="sidebar-widget-02__psot-item">
+                                            <div class="sidebar-widget-02__psot-thumbnail ">
+                                                <a href="{{url_for('blog.blogDetails',id = blog.id)}}">
+                                                    <img src="{{url_for('static',filename = 'uploads/' + blog.Image | string)}}" alt="Blog" width="100" height="80">
+                                                    <div class="sidebar-widget-02__categories">
+                                                        <span>{{blog.blog_category.category_name}}</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="sidebar-widget-02__psot-info">
+                                                <h5 class="sidebar-widget-02__psot-title"><a href="{{url_for('blog.blogDetails',id = blog.id)}}">{{blog.heading}}</a></h5>
+                                                <span class="sidebar-widget-02__psot-date">{{blog.created_at.strftime("%B %d, %Y")}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+                                <!-- Sidebar Widget Search End -->
+                            </div>
+                            <!-- Sidebar Widget End -->
+
+                           
+
+                        </div>
+                        <!-- Sidebar Widget End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Blog End -->
+{% endblock %}

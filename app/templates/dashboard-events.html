@@ -1,0 +1,104 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">courses</h4>
+        <a href="{{url_for('events.new_event')}}">
+          <button class='btn btn-primary'>New Event</button>
+
+        </a>
+        
+        <br>
+        <br>
+        <table class="table" style="background-color:white;padding:10px;border-radius:15px;">
+            <thead>
+              <tr>
+                <th scope="col">image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Location</th>
+                <th scope="col">start date</th>
+                <th scope="col">end date</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%with messages = get_flashed_messages(with_categories = True)%}
+              {%if messages%}
+              {%for category,message in messages%}
+              <div class="alert alert-{{category}}" role="alert">
+                  {{message}}
+              </div>
+              {%endfor%}
+              {%endif%}
+              {%endwith%}
+
+              {%if events | length == 0%}
+              <div class="alert alert-warning" role="alert">
+                There are no events,kindly use the button above to schedule an event!
+            </div>
+            {%endif%}
+
+                {%for event in events%}
+              <tr>
+                <th scope="row">
+                    <img src="../static/uploads/{{event.Image}}" height='200px' width='150px'/>
+                </th>
+
+                <th scope="row">{{event.heading}}</th>
+                <td>${{event.price}}</td>
+                <td>{{event.location}}</td>
+                <td>{{event.start_date}}</td>
+                <td>{{event.end_date}}</td>
+                <td>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <a href="{{url_for('events.eventDetails',id = event.id)}}"><button class="btn btn-primary">view</button></a>
+
+
+                    </div>
+                    <div class="col-md-3">
+                      <a href="{{url_for('eventUpload.delete_event',heading = event.heading)}}"><button class="btn btn-danger">delete</button></a>
+
+
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+        <!--dashboard content end-->
+
+
+
+{%endblock%}

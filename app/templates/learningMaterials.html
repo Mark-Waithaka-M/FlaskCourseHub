@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+{% block title%}Upload Video{% endblock %}
+
+{% block body %}
+<form action="{{url_for('learningMaterialsUpload')}}" method="post" enctype="multipart/form-data">
+    <input type="file" name="video" accept=".mp4">
+    <input type="submit" value="Upload">
+
+    <label for="reading">Reading Materials:</label>
+    <textarea name="reading" id="reading"  rows="15" cols="60"></textarea>
+
+    <label for="sub_heading">Sub Heading:</label>
+    <input type="text" name="sub_heading" id="sub_heading">
+
+    <label for="content">Course Content</label><br>
+        <select name="content" id="content">
+            {%for content in contents %}
+            <option value="{{content.id}}">{{content.id}}</option>
+            {%endfor%}
+        </select>
+</form>
+{%endblock%}

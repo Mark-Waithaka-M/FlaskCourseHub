@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/shopDetailsUpload" method="post" enctype="multipart/form-data">
+        <label for="author">Books Author :</label>
+        <input type="text" name="author" id="author">
+
+        <label for="stock">Books In Stock:</label>
+        <input type="number" name="stock" id="stock">
+
+        <label for="overview">Book Overview:</label>
+        <textarea name="overview" id="overview"  rows="15" cols="60"></textarea> 
+
+        <label for="language">Book Language:</label>
+        <input type="text" name="language" id="language">
+        
+        <br>
+        <input type="submit" value="submit">
+
+    </form>
+</body>
+</html>

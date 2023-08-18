@@ -1,0 +1,473 @@
+{% extends 'base.html'%}
+
+{% block body %}
+  <!-- Page Banner Section Start -->
+  <div class="page-banner bg-color-05">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}>Home</a></li>
+                    <li class="breadcrumb-item active">Our Shop</li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+            <!-- Page Banner Caption Start -->
+            <div class="page-banner__caption text-center">
+                <h2 class="page-banner__main-title">Our Shop</h2>
+            </div>
+            <!-- Page Banner Caption End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Offcanvas Start -->
+<div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+        <div class="offcanvas-logo">
+            <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+        </div>
+        <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <nav class="canvas-menu">
+            <ul class="offcanvas-menu">
+                <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                <li>
+                    <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                    
+                </li>
+                <li>
+                    <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                    
+                </li>
+                <li>
+                    <a href="#"><span>Help?</span></a>
+                    <ul class="sub-menu">
+                        
+                        <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                        <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                        <li><a href="faqs.html"><span>FAQs</span></a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>more</span></a>
+                    <ul class="sub-menu">
+                        <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                        <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                        <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                        <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                        <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                        {%if current_user.is_admin == True%}
+                        <li><a href=""><span>Admin dash</span></a></li>
+                        {%endif%}
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header User Button Start -->
+    <div class="offcanvas-user d-lg-none">
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+        </div>
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+        </div>
+    </div>
+    <!-- Header User Button End -->
+
+</div>
+<!-- Offcanvas End -->
+
+<!-- Shop Start -->
+<div class="shop-section section-padding-01">
+    <div class="container">
+        <div class="row gy-10 flex-row-reverse">
+
+            <div class="shop-main-content">
+
+                <!-- Archive Filter Bars Start -->
+                <div class="archive-filter-bars">
+
+                    <div class="archive-filter-bar">
+                        <p>We found <span>{{items.items | length}}</span> items available for you</p>
+                    </div>
+
+                    <div class="archive-filter-bar">
+
+                        <div class="filter-bar-wrapper">
+                            <span>See</span>
+                            <ul class="nav">
+                                <li><button class="active" data-bs-toggle="tab" data-bs-target="#grid"><i class="fas fa-th"></i></button></li>
+                                <li><button data-bs-toggle="tab" data-bs-target="#list"><i class="fas fa-bars"></i></button></li>
+                            </ul>
+                            <div class="filter-select filter-select-icon">
+                                <form action="#">
+                                    <select class="edumall-nice-select" data-select="{&quot;fieldLabel&quot;:&quot;Sort by:&quot;}">
+                                        <option value="menu_order" selected="selected">Default</option>
+                                        <option value="popularity">Popularity</option>
+                                        <option value="rating">Average rating</option>
+                                        <option value="date">Latest</option>
+                                        <option value="price">Price: low to high</option>
+                                        <option value="price-desc">Price: high to low</option>
+                                    </select>
+                                    <input type="hidden" name="paged" value="1">
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- Archive Filter Bars End -->
+            
+
+                <div class="tab-content">
+                    {%if items.items | length != 0%}
+                    <div class="tab-pane fade show active" id="grid">
+
+                        <div class="row gy-6">
+                            <div class="col-xl-3 col-md-4 col-sm-6">
+                                {%for item in items.items%}
+
+                                <!-- Product Item Start -->
+                                <div class="product-item" data-aos="fade-up" data-aos-duration="1000">
+                                    <div class="product-item__header">
+                                        <div class="product-item__thumbnail">
+                                            <a href="{{url_for('shop.shopDetails',name = item.name)}}">
+                                                <img src="../static/uploads/{{item.image}}" alt="Product" width="251" height="290">
+                                            </a>
+                                        </div>
+                                      <!--  <div class="product-item__badge">
+                                            <span class="onsale">-34%</span>
+                                        </div> -->
+                                        <div class="product-item__actions">
+                                            <a class="product-item__action" data-bs-tooltip="tooltip" data-bs-placement="top" title="Add to cart" href="{{url_for('cart.add_to_cart',item_name=item.name)}}"><i class="fal fa-shopping-cart"></i></a>
+                                            <a class="product-item__action" data-bs-tooltip="tooltip" data-bs-placement="top" title="Add to wishlist" href="#"><i class="fal fa-heart"></i></a>
+                                            <a class="product-item__action" data-bs-tooltip="tooltip" data-bs-placement="top" title="Compare" href="#"><i class="far fa-signal"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="product-item__info text-center">
+                                        <div class="product-item__price">
+                                            <span class="sale-price discount">$59.<small class="separator">00</small></span>
+                                            <span class="regular-price">$89.<small class="separator">00</small></span>
+                                        </div>
+                                        <h2 class="product-item__title"><a href="{{url_for('shop.shopDetails',name = item.name)}}">{{item.name}}</a></h2>
+                                    </div>
+                                </div>
+                                <!-- Product Item End -->
+                                {%endfor%}
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="list">
+                        {%for item in items.items%}
+
+                        <!-- Product List Item Start -->
+                        <div class="product-list-item">
+                            <div class="product-list-item__header">
+                                <div class="product-list-item__thumbnail">
+                                    <a href="{{url_for('shop.shopDetails',name = item.name)}}">
+                                        <img src="../static/uploads/{{item.image}}" alt="Product" width="230" height="266">
+                                    </a>
+                                </div>
+                               <!-- <div class="product-list-item__badge">
+                                    <span class="onsale">-34%</span>
+                                </div> -->
+                            </div>
+                            <div class="product-list-item__info">
+                                <div class="product-list-item__price">
+                                    <span class="sale-price discount">$59.<small class="separator">00</small></span>
+                                    <span class="regular-price">$89.<small class="separator">00</small></span>
+                                </div>
+                                <h2 class="product-list-item__title"><a href="{{url_for('shop.shopDetails',name = item.name)}}">{{item.name}}</a></h2>
+                                <p>{{item.caption}}</p>
+                                <div class="product-list-item__actions">
+                                    <a class="product-list-item__btn btn btn-primary btn-hover-secondary" href="{{url_for('cart.add_to_cart',item_name=item.name)}}">Add to cart</a>
+                                    <a class="product-list-item__action" data-bs-tooltip="tooltip" data-bs-placement="top" title="Add to wishlist" href="#"><i class="fal fa-heart"></i></a>
+                                    <a class="product-list-item__action" data-bs-tooltip="tooltip" data-bs-placement="top" title="Compare" href="#"><i class="far fa-signal"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product List Item End -->
+                        {%endfor%}
+
+                       
+                        
+
+                    </div>
+                    {%else%}
+                    <div class="alert alert-warning" role="alert">
+                       Unfortunately no course was found,please check again later!
+                      </div>
+
+                    {%endif%}
+                </div>
+
+                <!-- Page Pagination Start -->
+                <div class="page-pagination">
+                    <ul class="pagination justify-content-center">
+                        {%for page_num  in items.iter_pages(left_edge=1,right_edge=1,left_current =1 ,right_current=2)%}
+                        {%if page_num%}
+                        {%if items.page == page_num%}
+                        <li><a class="active" href="{{url_for('shop.shops',page = page_num)}}">{{page_num}}</a></li>
+                        {%else%}
+                        <li><a  href="{{url_for('shop.shops',page = page_num)}}">{{page_num}}</a></li>
+                        {%endif%}
+
+                        {%else%}
+
+                        ...
+                        {%endif%}
+                        {%endfor%}
+                    </ul>
+                </div>
+                <!-- Page Pagination End -->
+
+            </div>
+
+            <div class="shop-main-sidebar">
+                <!-- Sidebar Widget Start -->
+                <div class="sidebar-widget-wrapper">
+
+                    <!-- Sidebar Widget Wrapper Start -->
+                    <div class="sidebar-widget-wrap bg-color-10">
+                        <h4 class="sidebar-widget-wrap__title">Filter by category</h4>
+
+                        <!-- Widget Filter Start -->
+                        <div class="widget-filter">
+
+                            <!-- Widget Filter Wrapper Start -->
+                            <div class="widget-filter__wrapper">
+                                <ul class="widget-filter__list">
+                                    {%for category in categories%}
+
+                                    <li class="widget-filter__item"><a style="text-decoration: none;color: black;text-transform: capitalize;" href="{{url_for('shop.filter_by_category',category = category.category_name)}}">{{category.category_name}}</a></li>
+
+                                    {%endfor%}
+                                </ul>
+                            </div>
+                            <!-- Widget Filter Wrapper End -->
+                        </div>
+                        <!-- Widget Filter End -->
+
+                    </div>
+                    <!-- Sidebar Widget Wrapper End -->
+
+                    <!-- Sidebar Widget Wrapper Start -->
+                    <div class="sidebar-widget-wrap bg-color-10 mt-4">
+                        <h4 class="sidebar-widget-wrap__title">Filter by</h4>
+
+                        <!-- Widget Filter Start -->
+                        <div class="widget-filter">
+                            <h4 class="widget-filter__title-02">Authors</h4>
+
+                            <!-- Widget Filter Wrapper Start -->
+                            <div class="widget-filter__wrapper">
+                                <ul class="widget-filter__list">
+                                    <li>
+                                        <!-- Widget Filter Item Start -->
+                                        <div class="widget-filter__item">
+                                            <input type="checkbox" id="authors1" name="sort-by">
+                                            <label for="authors1">Alexander Morgan <span>(2)</span></label>
+                                        </div>
+                                        <!-- Widget Filter Item End -->
+                                    </li>
+                                    <li>
+                                        <!-- Widget Filter Item Start -->
+                                        <div class="widget-filter__item">
+                                            <input type="checkbox" id="authors2" name="sort-by">
+                                            <label for="authors2">Hinata Hyuga <span>(4)</span></label>
+                                        </div>
+                                        <!-- Widget Filter Item End -->
+                                    </li>
+                                    <li>
+                                        <!-- Widget Filter Item Start -->
+                                        <div class="widget-filter__item">
+                                            <input type="checkbox" id="authors3" name="sort-by">
+                                            <label for="authors3">John Doe <span>(3)</span></label>
+                                        </div>
+                                        <!-- Widget Filter Item End -->
+                                    </li>
+                                    <li>
+                                        <!-- Widget Filter Item Start -->
+                                        <div class="widget-filter__item">
+                                            <input type="checkbox" id="authors4" name="sort-by">
+                                            <label for="authors4">Keny White <span>(4)</span></label>
+                                        </div>
+                                        <!-- Widget Filter Item End -->
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Widget Filter Wrapper End -->
+                        </div>
+                        <!-- Widget Filter End -->
+
+                        <!-- Widget Filter Start 
+                        <div class="widget-filter">
+                            <h4 class="widget-filter__title-02">Price</h4>
+
+                            <!-- Widget Filter Wrapper Start 
+                            <div class="widget-filter__wrapper">
+                                <div class="widget-filter__range-slider">
+                                    <div class="widget-filter__slider-line multi-range">
+                                        <input id="min" type="range" min="0" max="100" value="0" step="0.0001" />
+                                        <input id="max" type="range" min="0" max="100" value="100" step="0.0001" />
+                                    </div>
+                                    <div class="widget-filter__range-bottom">
+                                        <div class="widget-filter__range-values">
+                                            <span class="">Price:</span>
+                                            <span id="from">$0</span>
+                                            <span> &dash; </span>
+                                            <span id="to">$500</span>
+                                        </div>
+                                        <div class="widget-filter__range-btn">
+                                            <button class="btn btn-white btn-hover-primary">Filter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Widget Filter Wrapper End 
+                        </div>
+                        <!-- Widget Filter End -->
+
+                        <!-- Widget Filter Start -->
+                        <div class="widget-filter">
+                            <h4 class="widget-filter__title">Language</h4>
+
+                            <!-- Widget Filter Wrapper Start -->
+                            <div class="widget-filter__wrapper">
+                                <ul class="widget-filter__list">
+                                    <li class="widget-filter__item"><a style="text-decoration: none;color: black;text-transform: capitalize;" href="{{url_for('shop.filter_by_language',language = 'english')}}">English</a></li>
+                                    <br>
+                                    <li class="widget-filter__item"><a style="text-decoration: none;color: black;text-transform: capitalize;" href="{{url_for('shop.filter_by_language',language = 'Spanish')}}">Spanish</a></li>
+
+                                </ul>
+                            </div>
+                            <!-- Widget Filter Wrapper End -->
+                        </div>
+                        <!-- Widget Filter End -->
+
+                        <!-- Widget Filter Start -->
+                        <div class="widget-filter">
+                            <h4 class="widget-filter__title-02">Rating</h4>
+
+                            <!-- Widget Filter Wrapper Start -->
+                            <div class="widget-filter__wrapper">
+                                <ul class="widget-filter__list">
+                                    <li>
+                                        <!-- Widget Filter Item Start -->
+                                        <div class="widget-filter__item">
+                                            <input type="checkbox" id="rating6" name="sort-by">
+                                            <label for="rating6">
+                                                <span class="star-line">
+                                                <span class="star" style="width: 100%;"></span>
+                                                </span>
+
+                                                <span>(07)</span>
+                                            </label>
+                                        </div>
+                                        <!-- Widget Filter Item End -->
+                                    </li>
+                                    <li>
+                                        <!-- Widget Filter Item Start -->
+                                        <div class="widget-filter__item">
+                                            <input type="checkbox" id="rating7" name="sort-by">
+                                            <label for="rating7">
+                                                <span class="star-line">
+                                                <span class="star" style="width: 80%;"></span>
+                                                </span>
+
+                                                <span>(0)</span>
+                                            </label>
+                                        </div>
+                                        <!-- Widget Filter Item End -->
+                                    </li>
+                                    <li>
+                                        <!-- Widget Filter Item Start -->
+                                        <div class="widget-filter__item">
+                                            <input type="checkbox" id="rating8" name="sort-by">
+                                            <label for="rating8">
+                                                <span class="star-line">
+                                                <span class="star" style="width: 60%;"></span>
+                                                </span>
+
+                                                <span>(0)</span>
+                                            </label>
+                                        </div>
+                                        <!-- Widget Filter Item End -->
+                                    </li>
+                                    <li>
+                                        <!-- Widget Filter Item Start -->
+                                        <div class="widget-filter__item">
+                                            <input type="checkbox" id="rating9" name="sort-by">
+                                            <label for="rating9">
+                                                <span class="star-line">
+                                                <span class="star" style="width: 40%;"></span>
+                                                </span>
+
+                                                <span>(0)</span>
+                                            </label>
+                                        </div>
+                                        <!-- Widget Filter Item End -->
+                                    </li>
+                                    <li>
+                                        <!-- Widget Filter Item Start -->
+                                        <div class="widget-filter__item">
+                                            <input type="checkbox" id="rating10" name="sort-by">
+                                            <label for="rating10">
+                                                <span class="star-line">
+                                                <span class="star" style="width: 20%;"></span>
+                                                </span>
+
+                                                <span>(0)</span>
+                                            </label>
+                                        </div>
+                                        <!-- Widget Filter Item End -->
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Widget Filter Wrapper End -->
+                        </div>
+                        <!-- Widget Filter End -->
+
+                    </div>
+                    <!-- Sidebar Widget Wrapper End -->
+
+                </div>
+                <!-- Sidebar Widget End -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Shop End -->
+{% endblock %}

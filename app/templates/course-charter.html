@@ -1,0 +1,68 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">Add course price. </h4>
+    {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+        <div class="form" style="background-color: white;padding: 10px;">
+
+            <form action="{{url_for('courseUpload.priceUpload',id = course.id)}}" method="post" enctype="multipart/form-data">
+                <p>Your are adding prices for  course: <h6>{{course.name}}</h6></p>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Original Price</label>
+                    <input type="text" name="cost" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Discounted Price</label>
+                    <input type="text"  name="discounted-price" class="form-control" id="exampleFormControlInput1" >
+                  </div>
+                  <div class="row">
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                    <br>
+                    <div class="col-md-1">
+                        <a href="{{url_for('course.courseDetails',name=course.name)}}"> 
+                            <button type="button" class="btn btn-primary">view Course</button> 
+                        </a>
+
+
+                    </div>
+                  </div>
+                
+                
+           
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+    <!--dashboard content end-->
+
+
+{%endblock%}

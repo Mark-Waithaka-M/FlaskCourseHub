@@ -1,0 +1,94 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">Blog Authors</h4>
+        <div class="row">
+          <div class="col-md-2">
+              <a href="{{url_for('BlogUpload.blogCreatorUpload')}}">
+                  <button class='btn btn-primary'>New Blog Author</button>
+                </a>
+          </div>
+          <br>
+      </div>
+      <br>
+      {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+        <br>
+        <table class="table" style="background-color:white;padding:10px;border-radius:15px;">
+            <thead>
+              <tr>
+                <th></th>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%if authors | length == 0%}
+              <div class="alert alert-warning" role="alert">
+                There are no authors on the platform,kindly use the button above to add a new author!
+            </div>
+            {%endif%}
+           
+                {%for author in authors%}
+              <tr>
+                <th>
+                    <img src="{{url_for('static',filename = 'uploads/' + author.Image | string)}}" alt="" width = "200px" height="150px">
+                </th>
+                <th scope="row">{{author.name}}</th>
+
+        
+                <td>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <a href="{{url_for('BlogUpload.delete_blog_author',name = author.name)}}"><button class="btn btn-danger">delete</button></a>
+                    </div>
+
+                  </div>
+                  
+                </td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+        <!--dashboard content end-->
+
+
+
+{%endblock%}

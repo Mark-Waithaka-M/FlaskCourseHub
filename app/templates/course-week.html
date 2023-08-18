@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block head%}
+{% block title %}  Course Week{% endblock %}
+{% endblock %}
+{% block body%}
+    <form action="/weekUpload" method="post" enctype="multipart/form-data">
+        <label for="week_no">Week number:</label>
+        <input type="number" name="week_no" id="week_no">
+        
+        <label for="course">Course</label><br>
+        <select name="course" id="course">
+            {%for course in courses%}
+            <option value="{{course.id}}">{{course.name}}</option>
+            {%endfor%}
+        </select>
+
+        <br>
+        <input type="submit" value="submit">
+
+    </form>
+{% endblock %}

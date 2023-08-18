@@ -1,0 +1,135 @@
+{%extends 'base.html'%}
+
+{%block head%}
+
+
+
+{%endblock%}
+
+
+{%block body%}
+
+<div  style="margin: 10%;">
+    <br>
+    <div class="row" style="margin-top:10%">
+        <h2>Order Details</h2>
+        <div class="col-md-11">
+
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {%for item in order.order_items%}
+                  <tr>
+                    <th scope="row">
+                        <img src="../static/uploads/{{item.parent_shop_item.image}}" alt="" width="150px" height="200px">
+                    </th>
+                    <td>{{item.parent_shop_item.name}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>${{item.parent_shop_item.price()}}.00</td>
+                  </tr>
+                  {%endfor%}
+              
+               
+                </tbody>
+              </table>
+
+
+        </div>
+        <div class="col-md-5" style="
+        background-color: white;
+        border: none;
+        box-shadow: 2px 4px 6px grey;
+        padding: 10px;
+        margin: 10px;
+        ">
+        <h4>Order Details</h4>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>Id</h6>
+            </div>
+            <div class="col-md-5">
+                <p>#{{order.identifier}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h6>Date placed:</h6>
+            </div>
+            <div class="col-md-5">
+                <p>{{order.date.strftime('%A, %B %d, %Y')}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>status</h6>
+            </div>
+            <div class="col-md-5">
+                <p>{{order.status}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>Total</h6>
+            </div>
+            <div class="col-md-5">
+                <p>${{order.total}}</p>
+            </div>
+        </div>
+
+
+        </div>
+        <div class="col-md-5"  style="
+        background-color: white;
+        border: none;
+        box-shadow: 2px 4px 6px grey;
+        padding: 10px;
+        ">
+        <h4>Customer Details</h4>
+        <hr>
+
+        <div class="row">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>First Name</h6>
+                </div>
+                <div class="col-md-5">
+                    <p>{{order.user.firstname}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Last Name</h6>
+                </div>
+                <div class="col-md-5">
+                    <p>{{order.user.lastname}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Email</h6>
+                </div>
+                <div class="col-md-5">
+                    <p>{{order.user.email}}</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        </div>
+    </div>
+</div>
+
+{%endblock%}

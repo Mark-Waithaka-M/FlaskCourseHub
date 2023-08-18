@@ -1,0 +1,937 @@
+{% extends 'base.html' %}
+
+{% block body %}
+   <!-- Page Banner Section Start -->
+   <div class="page-banner">
+    <div class="page-banner__wrapper">
+        <div class="container">
+
+            <!-- Page Breadcrumb Start -->
+            <div class="page-breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ url_for('course.courses') }}>courses</a></li>
+                    <li class="breadcrumb-item active">{{course.name}}}</li>
+                </ul>
+            </div>
+            <!-- Page Breadcrumb End -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Offcanvas Start -->
+        <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+            <div class="offcanvas-header bg-white">
+                <div class="offcanvas-logo">
+                    <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+                </div>
+                <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <nav class="canvas-menu">
+                    <ul class="offcanvas-menu">
+                        <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a>
+
+                            <ul class="mega-menu">
+                                <li>
+                                    <!-- Mega Menu Content Start -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-xl-3">
+                                                <div class="menu-content-list">
+                                                    <a href="index-main.html" class="menu-content-list__link">Main Demo <span class="badge hot">Hot</span></a>
+                                                    <a href="index-course-hub.html" class="menu-content-list__link">Course Hub</a>
+                                                    <a href="index-online-academy.html" class="menu-content-list__link">Online Academy <span class="badge hot">Hot</span></a>
+                                                    <a href="index-university.html" class="menu-content-list__link">University</a>
+                                                    <a href="index-education-center.html" class="menu-content-list__link">Education Center <span class="badge hot">Hot</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="menu-content-list">
+                                                    <a href="index-language-academic.html" class="menu-content-list__link">Language Academic</a>
+                                                    <a href="index-single-instructor.html" class="menu-content-list__link">Single Instructor</a>
+                                                    <a href="index-dev.html" class="menu-content-list__link">Dev <span class="badge new">New</span></a>
+                                                    <a href="index-online-art.html" class="menu-content-list__link">Online Art <span class="badge new">New</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="menu-content-banner" style="background-image: url(assets/images/home-megamenu-bg.jpg);">
+                                                    <h4 class="menu-content-banner__title">Achieve Your Goals With EduMall</h4>
+                                                    <a href="#" class="menu-content-banner__btn btn btn-primary btn-hover-secondary">Purchase now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Mega Menu Content Start -->
+                                </li>
+                            </ul>
+
+
+
+
+                        </li>
+                        <li>
+                            <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                            <ul class="sub-menu">
+                                
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                            <ul class="sub-menu">
+                                
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span>Pages</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="become-an-instructor.html"><span>Become an Instructor</span></a></li>
+                                <li>
+                                    <a href="instructors.html"><span>Instructor</span></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="dashboard-my-courses.html"><span>My Courses</span></a></li>
+                                        <li><a href="dashboard-announcement.html"><span>Announcements</span></a></li>
+                                        <li><a href="dashboard-withdraw.html"><span>Withdrawals</span></a></li>
+                                        <li><a href="dashboard-quiz-attempts.html"><span>Quiz Attempts</span></a></li>
+                                        <li><a href="dashboard-question-answer.html"><span>Question & Answer</span></a></li>
+                                        <li><a href="dashboard-assignments.html"><span>Assignments</span></a></li>
+                                        <li><a href="dashboard-students.html"><span>My Students</span></a></li>
+                                    </ul>
+                                </li>
+                                <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                                <li><a href="membership-plans.html"><span>Membership plans</span></a></li>
+                                <li><a href="faqs.html"><span>FAQs</span></a></li>
+                                <li>
+                                    <a href="#"><span>Dashboard</span></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="dashboard-index.html"><span>Dashboard</span></a></li>
+                                        <li><a href="dashboard-student-index.html"><span>Dashboard Student</span></a></li>
+                                        <li><a href="dashboard-profile.html"><span>My Profile</span></a></li>
+                                        <li><a href="dashboard-all-course.html"><span>Enrolled Courses</span></a></li>
+                                        <li><a href="dashboard-wishlist.html"><span>Wishlist</span></a></li>
+                                        <li><a href="dashboard-reviews.html"><span>Reviews</span></a></li>
+                                        <li><a href="dashboard-my-quiz-attempts.html"><span>My Quiz Attempts</span></a></li>
+                                        <li><a href="dashboard-purchase-history.html"><span>Purchase History</span></a></li>
+                                        <li><a href="dashboard-settings.html"><span>Settings</span></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span>Features</span></a>
+                            <ul class="sub-menu">
+                                <li><a href={{ url_for('events.event') }}><span>Events</span></a>
+                                    <ul class="sub-menu">
+                                        
+                                       
+                                    </ul>
+                                </li>
+                                
+                                <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a>
+                                    <ul class="sub-menu">
+                                            <li><a href="my-account.html"><span>My account</span></a></li>
+                                            <li><a href="wishlist.html"><span>Wishlist</span></a></li>
+                                            <li><a href="cart.html"><span>Cart</span></a></li>                         
+                                            <li><a href="checkout.html"><span>Checkout</span></a></li>
+                                        
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                        </li>
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header User Button Start -->
+            <div class="offcanvas-user d-lg-none">
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+                </div>
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+                </div>
+            </div>
+            <!-- Header User Button End -->
+
+        </div>
+        <!-- Offcanvas End -->
+<!-- Offcanvas Start -->
+<div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+    <div class="offcanvas-header bg-white">
+        <div class="offcanvas-logo">
+            <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+        </div>
+        <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <nav class="canvas-menu">
+            <ul class="offcanvas-menu">
+                <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                <li>
+                    <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                    
+                </li>
+                <li>
+                    <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                    
+                </li>
+                <li>
+                    <a href="#"><span>Help?</span></a>
+                    <ul class="sub-menu">
+                        
+                        <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                        <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                        <li><a href="faqs.html"><span>FAQs</span></a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>more</span></a>
+                    <ul class="sub-menu">
+                        <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                        <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                        <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                        <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                        <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                        {%if current_user.is_admin == True%}
+                        <li><a href=""><span>Admin dash</span></a></li>
+                        {%endif%}
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header User Button Start -->
+    <div class="offcanvas-user d-lg-none">
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+        </div>
+        <div class="offcanvas-user__button">
+            <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+        </div>
+    </div>
+    <!-- Header User Button End -->
+
+</div>
+<!-- Offcanvas End -->
+
+<!-- Tutor Course Top Info Start -->
+<div class="tutor-course-top-info section-padding-01">
+    <div class="container custom-container">
+
+        <div class="row gy-10 align-items-center flex-row-reverse">
+            <div class="col-md-5">
+                <div class="tutor-course-top-info__video">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/tXr3wCyBE9I" title="YouTube video" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+
+                <!-- Tutor Course Top Info Start -->
+                <div class="tutor-course-top-info__content">
+                    <div class="tutor-course-top-info__badges">
+                        <span class="onsale">-39%</span>
+                        <a class="badges-category" href="{{url_for('course.filter_by_category',category = course.categories.course_category)}}">{{course.categories.course_category}}</a>
+                    </div>
+                    <h1 class="tutor-course-top-info__title">{{course.name}}</h1>
+                    <div class="tutor-course-top-info__meta">
+                        <div class="tutor-course-top-info__meta-instructor">
+                            <div class="instructor-avatar">
+                                <img src="../static/assets/images/instructor/instructor-01.jpg" alt="Instructor" width="36" height="36">
+                            </div>
+                            <div class="instructor-name">Owen Christ</div>
+                        </div>
+                        <div class="tutor-course-top-info__meta-update">Last Update {{course.date_added.strftime('%d %A %Y %I:%M %p')}}</div>
+                    </div>
+                    <div class="tutor-course-top-info__meta">
+                        <div class="tutor-course-top-info__meta-rating">
+
+                            <div class="rating-average"><strong>4.38</strong> /5</div>
+                            <div class="rating-star">
+                                <div class="rating-label" style="width: 90%;"></div>
+                            </div>
+                            <div class="rating-count">(8)</div>
+
+                        </div>
+                        <div class="tutor-course-top-info__meta-action"><i class="meta-icon far fa-user-alt"></i> {{course.enrolled_students | length}} already enrolled</div>
+                    </div>
+                    {%if current_user.is_authenticated%}
+                    {%if course in current_user.enrolled%}
+
+                    <div class="tutor-course-top-info__btn">
+                        <a href="{{url_for('course.attend_course',name = course.name)}}">
+                            <button class="btn btn-primary">Go to course</button>
+                        </a>
+                        <br>
+                        <a href="{{url_for('course.unenroll_course',course_name = course.name)}}">
+                            <button class="btn btn-primary">Unenroll</button>
+                        </a>
+        
+  <!-- <a href="/add-to-wishlist/{{course.name}}" class="btn-wishlist"><i class="fal fa-heart"></i> <span>Add to wishlist</span></a> -->
+                    </div>
+                    {%else%}
+                    <div class="tutor-course-top-info__btn">
+                        <a href="{{url_for('course.course_checkout',name = course.name)}}">
+                            <!-- enroll_to_course    course_name -->
+                            
+                            <button id="enroll-button" class="btn btn-primary">
+                                Enroll 
+                            </button>
+                        </a>
+                          
+                     <!--  <a href="/add-to-wishlist/{{course.name}}" class="btn-wishlist"><i class="fal fa-heart"></i> <span>Add to wishlist</span></a> -->
+                    </div>
+                    {%endif%}
+
+                    {%else%}
+
+                    <div class="alert alert-warning" role="alert">You need to log in to enroll.</div>
+                    {%endif%}
+
+                    
+
+
+                </div>
+                <!-- Tutor Course Top Info End -->
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Tutor Course Top Info End -->
+
+<!-- Tutor Course tabs Menu Start -->
+<div class="tutor-course-tabs bg-color-13">
+    <div class="container custom-container">
+
+        <ul class="nav justify-content-center">
+            <li><button class="active" data-bs-toggle="tab" data-bs-target="#tab1">Overview</button></li>
+            <li><button data-bs-toggle="tab" data-bs-target="#tab2">Curriculum</button></li>
+            <li><button data-bs-toggle="tab" data-bs-target="#tab3">Instructors</button></li>
+        </ul>
+
+    </div>
+</div>
+<!-- Tutor Course tabs Menu End -->
+
+<!-- Tutor Course Main content Start -->
+<div class="tutor-course-main-content bg-color-05 section-padding-01 sticky-parent">
+    <div class="container custom-container">
+
+        <div class="row gy-10">
+            <div class="col-lg-8">
+
+                <div class="course-main-sticky">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="tab1">
+
+                            <!-- Tutor Course Main Segment Start -->
+                            <div class="tutor-course-main-segment">
+
+                               
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap">
+                                    <h4 class="tutor-course-segment__title">Course Prerequisites</h4>
+
+                                    <!-- Tutor Course Segment Prerequisites Start -->
+                                    <div class="tutor-course-segment__prerequisites">
+                                        <div class="tutor-course-segment__prerequisites-warning">
+                                            <i class="far fa-exclamation-triangle"></i>
+                                            Please note that this course has the following prerequisites which must be completed before it can be accessed
+                                        </div>
+                                        {%if course.prerequisites | length != 0%}
+                                        {% for prerequisite in course.prerequisites %}
+                                        <ul class="tutor-course-segment__prerequisites-list">
+                                            <li>
+                                                <a class="prerequisites-item" href="#">
+                                                    <div class="prerequisites-item__thumbnail">
+                                                        <img src="../static/uploads/{{prerequisite.Image}}" alt="Courses" width="70" height="47">
+                                                    </div>
+                                                    <div class="prerequisites-item__title">
+                                                        {{prerequisite.prerequisite_course}}
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        {% endfor %}
+                                        {%else%}
+                                        <br>
+                    
+                                        <div class="alert alert-warning" role="alert">
+                                           This course has no prerequisites.
+                                          </div>
+
+                                        {%endif%}
+                                    </div>
+                                    <!-- Tutor Course Segment Prerequisites End -->
+
+                                    
+
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap">
+                                    <h4 class="tutor-course-segment__title">About This Course</h4>
+                                    {%for about in course.about%}
+
+                                    <!-- Tutor Course Segment Content Wrapper Start -->
+                                    <div class="tutor-course-segment__content-wrap">
+                                        {%for paragraph in about.paragraphs%}
+                                        <p>{{paragraph.content}}</p>
+                                        {%endfor%}
+                                    </div>
+                                    <!-- Tutor Course Segment Content Wrapper End -->
+
+                                    {%endfor%}
+
+                                    <!-- Tutor Course Segment Tags Start -->
+                                    <div class="tutor-course-segment__tags">
+                                        <div class="tutor-course-segment__tags-title">
+                                            <i class="fal fa-tags"></i>
+                                        </div>
+                                        <div class="tutor-course-segment__tags-list">
+                                            <a href="#"> big data,</a>
+                                            <a href="#">data,</a>
+                                            <a href="#">data analysis,</a>
+                                            <a href="#">data modeling</a>
+                                        </div>
+                                    </div>
+                                    <!-- Tutor Course Segment Tags End -->
+
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap benefits-wrap">
+                                    <h4 class="tutor-course-segment__title">Learning Objectives</h4>
+
+                                    <!-- Tutor Course Segment Benefits Items Start -->
+                                    <div class="tutor-course-segment__benefits-items">
+                                        <div class="tutor-course-segment__benefit-item">
+                                            {%for objective in course.objectives%}
+                                            <div class="tutor-course-segment__benefit-content">
+                                                
+                                                <i class="far fa-check"></i>
+                                                <span class="benefit-text">{{objective.content}}</span>
+                                            </div>
+                                            <br>
+                        
+                                            {%endfor%}
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- Tutor Course Segment Benefits Items End -->
+
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap">
+                                    <h4 class="tutor-course-segment__title">Requirements</h4>
+
+                                    <!-- Tutor Course Segment Requirements Items Start -->
+                                    <div class="tutor-course-segment__requirements-content">
+                                        <ul class="tutor-course-segment__list-style-01">
+                                            {%for requirement in course.requirements%}
+                                            <li>{{requirement.content}}</li>
+                                            {%endfor%}
+                                            
+                                        </ul>
+                                    </div>
+                                    <!-- Tutor Course Segment Requirements Items End -->
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap audience-wrap">
+                                    <h4 class="tutor-course-segment__title">Target Audience</h4>
+
+                                    <!-- Tutor Course Segment Requirements Items Start -->
+                                    <div class="tutor-course-segment__audience-content">
+                                        <ul class="tutor-course-segment__list-style-02">
+                                            {%for audience in course.audiences%}
+                                            <li>{{audience.content}}</li>
+                                            {%endfor%}
+                                        </ul>
+                                    </div>
+                                    <!-- Tutor Course Segment Requirements Items End -->
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                            </div>
+                            <!-- Tutor Course Main Segment End -->
+
+                        </div>
+                        <div class="tab-pane fade" id="tab2">
+
+                            <!-- Tutor Course Main Segment Start -->
+                            <div class="tutor-course-main-segment">
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap">
+
+                                    <div class="tutor-course-segment__header">
+                                        <h4 class="tutor-course-segment__title">Curriculum</h4>
+
+                                        <div class="tutor-course-segment__lessons-duration">
+                                            <span class="tutor-course-segment__lessons">4 Lessons</span>
+                                            <span class="tutor-course-segment__duration">15h 15m</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="course-curriculum accordion">
+
+                                        <div class="accordion-item">
+                                            <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne"> <i class="tutor-icon"></i> IT background</button>
+                                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionCourse">
+
+                                                <div class="course-curriculum__lessons">
+                                                    <div class="course-curriculum__lesson">
+                                                        <span class="course-curriculum__title">
+                                                        <i class="far fa-file-alt"></i>
+                                                        course.background.content
+                                                    </span>
+                                                        <span class="course-curriculum__icon">
+                                                        <i class="far fa-lock-alt"></i>
+                                                    </span>
+                                                    </div>
+                                                   
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="accordion-item">
+                                            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"> <i class="tutor-icon"></i> Key concepts</button>
+                                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionCourse">
+
+                                                <div class="course-curriculum__lessons">
+                                                    <div class="course-curriculum__lesson">
+                                                        <span class="course-curriculum__title">
+                                                        <i class="far fa-file-alt"></i>
+                                                        course.concepts.content
+                                                    </span>
+                                                        <span class="course-curriculum__icon">
+                                                        <i class="far fa-lock-alt"></i>
+                                                    </span>
+                                                    </div>
+                                                    
+                                            </div>
+                                        </div>
+
+                                        <div class="accordion-item">
+                                            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree"> <i class="tutor-icon"></i> Apply the principles</button>
+                                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionCourse">
+
+                                                <div class="course-curriculum__lessons">
+                                                    <div class="course-curriculum__lesson">
+                                                        <span class="course-curriculum__title">
+                                                        <i class="far fa-file-alt"></i>
+                                                        course.principles.content
+                                                    </span>
+                                                        <span class="course-curriculum__icon">
+                                                        <i class="far fa-lock-alt"></i>
+                                                    </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                            </div>
+                            <!-- Tutor Course Main Segment End -->
+
+                        </div>
+                        <div class="tab-pane fade" id="tab3">
+
+                            <!-- Tutor Course Main Segment Start -->
+                            <div class="tutor-course-main-segment">
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap">
+                                    <h4 class="tutor-course-segment__title">Your Instructors</h4>
+
+                                    <div class="tutor-course-segment__instructor">
+                                        <div class="tutor-instructor">
+                                            <div class="tutor-instructor__avatar">
+                                                <img src="../static/uploads/" alt="instructor" width="200" height="246">
+                                            </div>
+                                            <div class="tutor-instructor__instructor-info">
+                                                <h4 class="tutor-instructor__name">Instructor name</h4>
+                                                <div class="tutor-instructor__ratings">
+                                                    <div class="rating-star">
+                                                        <div class="rating-label" style="width: 90%;"></div>
+                                                    </div>
+
+                                                    <div class="rating-average">
+                                                        <span class="rating-average__average">{instructor rating</span>
+                                                        <span class="rating-average__total">/5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="tutor-instructor__meta">
+                                                    <span><i class="far fa-play-circle"></i> 10 Courses</span>
+                                                    <span><i class="far fa-comment-alt"></i> 25 Reviews</span>
+                                                    <span><i class="far fa-user"></i> 73 Students</span>
+                                                </div>
+                                                <a class="tutor-instructor__link" href="#"><i class="far fa-plus"></i> See more</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap">
+                                    <h4 class="tutor-course-segment__title">Student Feedback</h4>
+
+                                    <div class="tutor-course-segment__feedback">
+                                        <div class="tutor-course-segment__reviews-average">
+                                            <div class="count">4.4</div>
+                                            <div class="reviews-rating-star">
+                                                <div class="rating-star">
+                                                    <div class="rating-label" style="width: 90%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="rating-total">8 Ratings</div>
+                                        </div>
+                                        <div class="tutor-course-segment__reviews-metar">
+
+                                            <div class="course-rating-metar">
+                                                <div class="rating-metar-star">
+                                                    <div class="rating-star">
+                                                        <div class="rating-label" style="width: 100%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-col">
+                                                    <div class="rating-metar-bar">
+                                                        <div class="rating-metar-line" style="width: 75%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-text">75%</div>
+                                            </div>
+
+                                            <div class="course-rating-metar">
+                                                <div class="rating-metar-star">
+                                                    <div class="rating-star">
+                                                        <div class="rating-label" style="width: 80%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-col">
+                                                    <div class="rating-metar-bar">
+                                                        <div class="rating-metar-line" style="width: 13%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-text">13%</div>
+                                            </div>
+
+                                            <div class="course-rating-metar">
+                                                <div class="rating-metar-star">
+                                                    <div class="rating-star">
+                                                        <div class="rating-label" style="width: 60%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-col">
+                                                    <div class="rating-metar-bar">
+                                                        <div class="rating-metar-line" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-text">0%</div>
+                                            </div>
+
+                                            <div class="course-rating-metar">
+                                                <div class="rating-metar-star">
+                                                    <div class="rating-star">
+                                                        <div class="rating-label" style="width: 40%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-col">
+                                                    <div class="rating-metar-bar">
+                                                        <div class="rating-metar-line" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-text">0%</div>
+                                            </div>
+
+                                            <div class="course-rating-metar">
+                                                <div class="rating-metar-star">
+                                                    <div class="rating-star">
+                                                        <div class="rating-label" style="width: 20%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-col">
+                                                    <div class="rating-metar-bar">
+                                                        <div class="rating-metar-line" style="width: 13%;"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating-metar-text">13%</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap">
+                                    <h4 class="tutor-course-segment__title">Reviews <span class="count">(3)</span></h4>
+
+                                    <div class="tutor-course-segment__review-commnet">
+                                        <ul class="comment-list-02">
+                                            <li>
+                                                <div class="comment-item-02">
+                                                    <div class="comment-item-02__header">
+                                                        <div class="comment-item-02__author">
+                                                            <img src="../static/uploads/{{course.reviews.Image}}" alt="Avatar" width="52" height="52">
+                                                        </div>
+                                                        <div class="comment-item-02__info">
+                                                            <h6 class="comment-item-02__name"><a href="#">{{course.reviews.name}}</a></h6>
+                                                            <p class="comment-item-02__date">{{course.reviews.date_added}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="comment-item-02__body">
+
+                                                        <div class="rating-star">
+                                                            <div class="rating-label" style="width: 80%;"></div>
+                                                        </div>
+
+                                                        <p>{{course.reviews.content}}</p>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                                <!-- Tutor Course Segment Start -->
+                                <div class="tutor-course-segment tutor-course-wrap">
+                                    <h4 class="tutor-course-segment__title">Write a review</h4>
+
+                                    <div class="tutor-course-segment__reviews">
+                                        <button class="tutor-course-segment__btn btn btn-primary btn-hover-secondary" data-bs-toggle="collapse" data-bs-target="#collapseForm">Write a review</button>
+
+                                        <div class="collapse" id="collapseForm">
+                                            <!-- Comment Form Start -->
+                                            <div class="comment-form">
+                                                <form action="{{url_for('courseUpload.reviewsUpload',id = course.id)}}" method = 'post'>
+                                                  
+                                                    <div class="row gy-4">
+                                                        <div class="col-md-6">
+                                                            <div class="comment-form__input">
+                                                                <input type="text" name="name" class="form-control" placeholder="Your Name *">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="comment-form__input">
+                                                                <input type="email" name="email" class="form-control" placeholder="Your Email *">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="comment-form__input">
+                                                                <textarea class="form-control" name="content" placeholder="Your Comment"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    
+                                                        <div class="col-md-12">
+                                                            <div class="comment-form__input">
+                                                                <button type="submit" class="btn btn-primary btn-hover-secondary">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- Comment Form End -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tutor Course Segment End -->
+
+                            </div>
+                            <!-- Tutor Course Main Segment End -->
+
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+
+                <!-- Tutor Course Sidebar Start -->
+                <div class="tutor-course-sidebar sidebar-label">
+
+                    <!-- Tutor Course Price Preview Start -->
+                    <div class="tutor-course-price-preview">
+                        <div class="tutor-course-price-preview__price">
+                            <div class="tutor-course-price">
+                                <span class="sale-price">${{course.price_charters[price_charters | length - 1].cost}}<span class="separator">.00</span></span>
+                                <span class="regular-price">${{course.price_charters[price_charters | length - 1].discounted_price}}<span class="separator">.00</span></span>
+                            </div>
+                          <!--  <div class="tutor-course-price-badge"> off</div>-->
+                        </div> 
+                        <div class="tutor-course-price-preview__meta">
+                            <ul class="tutor-course-meta-list">
+                                <li>
+                                    <div class="label"><i class="far fa-sliders-h"></i> Level </div>
+                                    <div class="value">{{course.level}}</div>
+                                </li>
+                                <li>
+                                    <div class="label"><i class="far fa-clock"></i> Duration </div>
+                                    <div class="value">{{course.duration}} hours</div>
+                                </li>
+                                <li>
+                                    <div class="label"><i class="far fa-play-circle"></i> Lectures </div>
+                                    <div class="value">{{course.lectures}} lectures</div>
+                                </li>
+                                <li>
+                                    <div class="label"><i class="far fa-tag"></i> Subject </div>
+                                    <div class="value"><a href="#">{{course.subject}}</a></div>
+                                </li>
+                                <li>
+                                    <div class="label"><i class="far fa-globe"></i> Language </div>
+                                    <div class="value">{{course.language}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tutor-course-segment">
+                            <h4 class="tutor-course-segment__title">Material Includes</h4>
+
+                            <ul class="tutor-course-segment__list-style-01">
+                               {%for material in course.course_materials%}
+                                <li>{{material.content}}</li>
+                                {%endfor%}
+                            </ul>
+                        </div>
+                        <div class="tutor-course-price-preview__social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-tumblr"></i></a>
+                        </div>
+                    </div>
+                    <!-- Tutor Course Price Preview End -->
+
+                    <!-- Sidebar Widget Start -->
+                    <div class="sidebar-widget border-0">
+                        <h3 class="sidebar-widget__title">Course categories</h3>
+
+                        <ul class="sidebar-widget__link">
+                            {% for category in categories %}
+                            <li><a href={{ url_for('shop.shops') }}>{{category.course_category}}</a></li>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                    <!-- Sidebar Widget End -->
+
+                    <!-- Sidebar Widget Start -->
+                    <div class="sidebar-widget border-0">
+                        <h3 class="sidebar-widget__title">Related Courses</h3>
+
+                        
+
+                        <div class="sidebar-widget__course">
+
+                            {% for course in similar_courses  %}
+
+                            <div class="sidebar-widget__course-item">
+                                <div class="sidebar-widget__course-thumbnail">
+                                    <a href={{ url_for('course.courseDetails',name = course.name) }}><img src="../static/uploads/{{course.Image}}" alt="Courses" width="120" height="72"></a>
+                                </div>
+                                <div class="sidebar-widget__course-content">
+                                    <h4 class="sidebar-widget__course-title"><a href={{ url_for('course.courseDetails',name = course.name) }}>{{course.name}}</a></h4>
+                                    {%if course.price_charters | length != 0%}
+                                    <div class="sidebar-widget__course-price">
+                                        <span class="sale-price">${{course.price().cost}}<span class="separator">.00</span></span>
+                                        <span class="regular-price">${{course.price().discounted_price}}<span class="separator">.00</span></span>
+                                    </div>
+                                    {%endif%}
+                                </div>
+                            </div>
+
+                            {%endfor%}
+
+                        </div>
+
+                 
+
+                        
+                    </div>
+                    <!-- Sidebar Widget End --> 
+
+                </div>
+                <!-- Tutor Course Sidebar End -->
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- Tutor Course Main content End -->
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const button = document.querySelector('#enroll-button');
+    const courseName = '{{course.name}}';
+
+
+    button.addEventListener('click',event => {
+    fetch(`/pay-course/${courseName}`)
+    .then((result) => {return result.json();})
+    .then((data) => {
+        var stripe = Stripe(data.checkout_public_key);
+        stripe.redirectToCheckout({
+            sessionId:data.checkout_session_id
+        }).then(function(result){
+
+
+            
+        });
+
+    })
+})
+</script>
+{%endblock%}

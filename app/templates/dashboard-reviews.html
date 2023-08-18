@@ -1,0 +1,65 @@
+{%extends 'dashboard-base.html'%}
+
+
+{%block body%}
+
+
+<!-- Dashboard Content Start -->
+<div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">Reviews</h4>
+
+        <!-- Dashboard Reviews Start -->
+        <div class="dashboard-reviews">
+            {%for review in current_user.all_reviews%}
+
+            <!-- Dashboard Review Item Start -->
+            <div class="dashboard-review-item">
+                <div class="dashboard-review-item__thumbnail">
+                    <img src="../static/uploads/{{review.course.Image}}" alt="Courses" width="150" height="100">
+                </div>
+                <div class="dashboard-review-item__content">
+                    <div class="dashboard-review-item__title-wrap">
+                        <h2 class="dashboard-review-item__title"><span>Course: </span> <a href="#">{{review.course.name}}</a></h2>
+                        <div class="dashboard-review-item__review-links">
+                            <a href="#"><i class="far fa-pencil"></i><span>Edit Feedback</span></a>
+                        </div>
+                    </div>
+                    <div class="dashboard-review-item__rating">
+                        <p>{{review.date_added.strftime("%Y-%m-%d %H:%M:%S")}}</p>
+                    </div>
+                    <div class="dashboard-review-item__text">
+                        <p>{{review.content}}!</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Dashboard Review Item End -->
+            {%endfor%}
+
+         
+
+  
+
+          
+
+          
+
+           
+
+         
+
+          
+
+        </div>
+        <!-- Dashboard Reviews End -->
+    </div>
+
+
+</div>
+<!-- Dashboard Content End -->
+
+
+
+
+{%endblock%}

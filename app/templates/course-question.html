@@ -1,0 +1,57 @@
+<!-- {%extends 'base.html'%}
+
+{%block head%}
+{% block title %}  Course Week{% endblock %}
+{% endblock %}
+{% block body%}
+    <form action="/courseReadingsUpload" method="post" enctype="multipart/form-data">
+        <label for="question">Question:</label>
+        <input type="text" name="question" id="question">
+
+        {% for question in Course_question %}
+
+        <label for="choice">Choices:</label>
+        <ul class="choices">
+            <li>
+                <label for="choice1">Choice 1:</label>
+                <input type="radio" name="choice1" value="A" /><span>{{question.choice_1}}</span
+                    
+            </li>
+            <li>
+                <label for="choice2">Choice 2:</label>
+                <input type="radio" name="choice2" value="B" /><span>{{question.choice_2}}</span>
+            </li>
+            <li>
+                <label for="choice3">Choice 3:</label>
+                <input type="radio" name="choice3" value="C" /><span>{{question.choice_3}}</span>
+                
+            </li>
+            <li>
+                <label for="choice4">Choice 4:</label>
+                <input type="radio" name="choice4" value="D" /><span>{{question.choice_4}}</span> 
+            </li>
+        </ul>
+
+        {% endfor %}
+        
+        <label for="content">Course Content</label><br>
+        <select name="content" id="content">
+            {%for content in contents %}
+            <option value="{{content.id}}">{{content.id}}</option>
+            {%endfor
+
+        <br>
+        <input type="submit" value="submit">
+
+    </form>
+{% endblock %}
+
+
+<ul class="quiz">
+    <li>
+        
+    </li>
+    
+</ul>
+<button class="view-results" onclick="returnScore()">View Results</button>
+<span id="myresults" class="my-results">My results will appear here</span> -->

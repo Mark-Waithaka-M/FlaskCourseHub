@@ -1,0 +1,338 @@
+{% extends 'base.html'%}
+
+{% block body %}
+           <!-- Page Banner Section Start -->
+           <div class="page-banner">
+            <div class="page-banner__wrapper">
+                <div class="container">
+
+                    <!-- Page Breadcrumb Start -->
+                    <div class="page-breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url_for('home.homepage') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url_for('events.event') }}">Events</a></li>
+                            <li class="breadcrumb-item active">{{event.heading}}– Tusome Tech Center</li>
+                        </ul>
+                    </div>
+                    <!-- Page Breadcrumb End -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner Section End -->
+
+        <!-- Offcanvas Start -->
+        <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+            <div class="offcanvas-header bg-white">
+                <div class="offcanvas-logo">
+                    <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+                </div>
+                <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <nav class="canvas-menu">
+                    <ul class="offcanvas-menu">
+                        <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                        <li>
+                            <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                            
+                        </li>
+                        <li>
+                            <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                            
+                        </li>
+                        <li>
+                            <a href="#"><span>Help?</span></a>
+                            <ul class="sub-menu">
+                                
+                                <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                                <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                                <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                                <li><a href="faqs.html"><span>FAQs</span></a></li>
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span>more</span></a>
+                            <ul class="sub-menu">
+                                <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                                <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                                <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                                <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                                <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                                {%if current_user.is_admin == True%}
+                                <li><a href=""><span>Admin dash</span></a></li>
+                                {%endif%}
+                            </ul>
+                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header User Button Start -->
+            <div class="offcanvas-user d-lg-none">
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+                </div>
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+                </div>
+            </div>
+            <!-- Header User Button End -->
+
+        </div>
+        <!-- Offcanvas End -->
+
+        <!-- event Details Start -->
+        <div class="event-section section-padding-01">
+            <div class="container custom-container">
+
+                <!-- event Dtails Start -->
+                <div class="event-details">
+
+                    <!-- event Dtails Header Start -->
+                    <div class="event-details__header">
+                        <h3 class="event-details__title">{{event.heading}} – Tusome Tech Center</h3>
+                        <div class="event-details__meta">
+                            <span class="meta-action"><i class="far fa-map-marker-alt"></i> <span class="meta-action__value">{{event.location}}</span></span>
+                            <span class="meta-action"><i class="far fa-calendar"></i> <span class="meta-action__value">{{event.start_date}} - {{event.end_date}}</span></span>
+                            <span class="meta-action"><i class="fal fa-clock"></i> <span class="meta-action__value">{{event.start_time}} - {{event.stop_time}}</span></span>
+                        </div>
+                    </div>
+                    <!-- event Dtails Header End -->
+
+                    <!-- event Dtails Thumbnail Start -->
+                    <div class="event-details__thumbnail">
+                        <img src="../static/uploads/{{event.Image}}" alt="Event" width="1170" height="350">
+                    </div>
+                    <!-- event Dtails Thumbnail End -->
+
+                    <!-- event Dtails Summary Start -->
+                    <div class="event-details__summary">
+
+                        <!-- event Dtails Conent Start -->
+                        <div class="event-details__content">
+                            <div class="row gy-6">
+                                <div class="col-lg-8">
+                                    <h3 class="event-details__heading mb-3">About The Event</h3>
+                                    {%for paragraph in event.paragraphs%}
+
+                                    <p>{{paragraph.paragraph_content}}</p>
+
+                                    {%endfor%}
+
+                                </div>
+                                <div class="col-lg-4">
+
+                                    <!-- event Dtails Conent Start -->
+                                    <div class="event-details__booking-info">
+                                        <ul class="event-details__info-meta">
+                                            {%if event.isPaid == False%}
+                                            <li class="meta-info meta-price">
+                                                <span class="meta-label">
+                                                <i class="far fa-money-bill-wave"></i>
+                                                Cost:
+                                            </span>
+                                          
+                                                <span class="meta-value">Free</span>
+
+                                            </li>
+                                            {%else%}
+                                            <li class="meta-info meta-price">
+                                                <span class="meta-label">
+                                                <i class="far fa-money-bill-wave"></i>
+                                                Cost:
+                                            </span>
+                                          
+                                                <span class="meta-value">{{event.cost}}$</span>
+
+                                            </li>
+
+                                            {%endif%}
+                                            <li class="meta-info">
+                                                <span class="meta-label">
+                                                <i class="far fa-user-friends"></i>
+                                                Attendance
+                                            </span>
+                                                <span class="meta-value">{{event.attendance}}</span>
+                                            </li>
+                                            <li class="meta-info">
+                                                <span class="meta-label">
+                                                <i class="far fa-lock-alt"></i>
+                                                Cost:
+                                            </span>
+                                                <span class="meta-value">3</span>
+                                            </li>
+                                        </ul>
+                                        {%if event.hasExpired == True%}
+                                        <p class="event-details__notice">This event has expired</p>
+                                        {%endif%}
+                                        <div class="event-details__share">
+                                            <a href="https://twitter.com/" target="_blank" data-bs-tooltip="tooltip" data-bs-placement="top" title="Twitter">
+                                                <div class="fab fa-twitter"></div>
+                                            </a>
+                                            <a href="https://www.facebook.com/" target="_blank" data-bs-tooltip="tooltip" data-bs-placement="top" title="Facebook">
+                                                <div class="fab fa-facebook-f"></div>
+                                            </a>
+                                            <a href="https://www.linkedin.com/" target="_blank" data-bs-tooltip="tooltip" data-bs-placement="top" title="Linkedin">
+                                                <div class="fab fa-linkedin"></div>
+                                            </a>
+                                            <a href="https://www.tumblr.com/" target="_blank" data-bs-tooltip="tooltip" data-bs-placement="top" title="Tumblr">
+                                                <div class="fab fa-tumblr-square"></div>
+                                            </a>
+                                            <a href="#" data-bs-tooltip="tooltip" data-bs-placement="top" title="Email">
+                                                <div class="fas fa-envelope"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- event Dtails Conent End -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- event Dtails Conent End -->
+
+                        <!-- event Dtails Location Start 
+                        <div class="event-details__location">
+                            <h3 class="event-details__heading">Location</h3>
+
+                            <div class="row gy-6">
+                                <div class="col-lg-8">
+                                    <div class="event-details__map">
+                                        <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=Mission%20District%2C%20San%20Francisco%2C%20CA%2C%20USA&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+
+                                    <div class="event-details__location-info">
+                                        <p class="location-info-heading">The Palace of Fine Arts</p>
+                                        <div class="location-info-address">
+                                            <p>event.event_details.location</p>
+                                            <a class="location-info-link" href="https://www.google.com/maps/search/?api=1&amp;query=3601%20Lyon%20St%20San%20Francisco,%20CA%2094123%20United%20States">+ Google Map</a>
+                                        </div>
+
+                                        <div class="location-info">
+                                            <span class="meta-label">Phone Number</span>
+                                            <span class="meta-value">(+254) 768 669 397</span>
+                                        </div>
+                                        <div class="location-info">
+                                            <span class="meta-label">Website</span>
+                                            <span class="meta-value">tusome@gmail.com</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- event Dtails Location End -->
+
+                        <!-- event Dtails Speakers Start -->
+                        <div class="event-details__speakers">
+                            <h3 class="event-details__heading">Our Speakers</h3>
+
+                            <div class="speaker-active">
+                                <div class="swiper">
+                                    <div class="swiper-wrapper">
+                                        {% for speaker in event.event_speakers %}
+                                        <div class="swiper-slide">
+                                            <!-- Speakers Item Start -->
+                                          
+                                            <div class="speaker-item text-center">
+                                               
+                                                <div class="speaker-item__thumbnail">
+                                                    <img src="../static/uploads/{{speaker.Image}}" alt="Speaker" width="170" height="170">
+                                                </div>
+                                                <div class="speaker-item__content">
+                                                    <h6 class="speaker-item__name">{{speaker.name}}</h6>
+                                                    <p class="speaker-item__designation">{{speaker.occupation}}</p>
+                                                </div>
+                                               
+                                            </div>
+                                          
+                                          
+                                            <!-- Speakers Item End -->
+                                            {%endfor%}
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- event Dtails Speakers End -->
+
+                        <!-- event Dtails Comment Start -->
+                        <div class="event-details__comment">
+                            <h3 class="event-details__heading">Leave your thought here</h3>
+
+                            <div class="row gy-6">
+                                <div class="col-lg-8">
+                                    <!-- Comment Form Start -->
+                                    <div class="comment-form">
+                                        <form action="/newEventComment/{{event.id}}" method="post">
+                                            <div class="row gy-4">
+                                                <div class="col-md-6">
+                                                    <div class="comment-form__input">
+                                                        <input type="text" name="name" class="form-control" placeholder="Your Name *">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="comment-form__input">
+                                                        <input type="email" name="email" class="form-control" placeholder="Your Email *">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="comment-form__input">
+                                                        <textarea class="form-control" name="comment" placeholder="Your Comment"></textarea>
+                                                    </div>
+                                                </div>
+                                              
+                                                <div class="col-md-12">
+                                                    <div class="comment-form__input">
+                                                        <button class="btn btn-primary btn-hover-secondary">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- Comment Form End -->
+                                </div>
+                                <div class="col-lg-4">
+                                    <!-- Comment Help Start -->
+                                    <div class="comment-help">
+                                        <p class="comment-help__title">We're always eager to hear from you.</p>
+                                        <p class="comment-help__description">If you’d like to learn more about us or have a general comments and suggestions about the site, email us at</p>
+                                        <p class="comment-help__link"><a href="mailto://contact@edumall.com">contact@edumall.com</a></p>
+                                    </div>
+                                    <!-- Comment Help End -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- event Dtails Comment End -->
+
+                    </div>
+                    <!-- event Dtails Summary End -->
+
+                </div>
+                <!-- event Dtails End -->
+
+            </div>
+        </div>
+        <!-- event Details End -->
+{% endblock %}

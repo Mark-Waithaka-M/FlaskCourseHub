@@ -1,0 +1,331 @@
+{% extends 'base.html'%}
+
+{% block body%}
+  
+        <!-- Page Banner Section Start -->
+        <div class="page-banner bg-color-05">
+            <div class="page-banner__wrapper">
+                <div class="container">
+
+                    <!-- Page Breadcrumb Start -->
+                    <div class="page-breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index-main.html">Home</a></li>
+                            <li class="breadcrumb-item active">Zoom Meetings and Webinars</li>
+                        </ul>
+                    </div>
+                    <!-- Page Breadcrumb End -->
+
+                    <!-- Page Banner Caption Start -->
+                    <div class="page-banner__caption text-center">
+                        <h2 class="page-banner__main-title">Zoom Meetings and Webinars</h2>
+                    </div>
+                    <!-- Page Banner Caption End -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner Section End -->
+
+        <!-- Offcanvas Start -->
+        <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+            <div class="offcanvas-header bg-white">
+                <div class="offcanvas-logo">
+                    <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+                </div>
+                <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <nav class="canvas-menu">
+                    <ul class="offcanvas-menu">
+                        <li><a class="active" href="#"><span>Home</span></a>
+
+                            <ul class="mega-menu">
+                                <li>
+                                    <!-- Mega Menu Content Start -->
+                                    <div class="mega-menu-content">
+                                        <div class="row">
+                                            <div class="col-xl-3">
+                                                <div class="menu-content-list">
+                                                    <a href="index-main.html" class="menu-content-list__link">Main Demo <span class="badge hot">Hot</span></a>
+                                                    <a href="index-course-hub.html" class="menu-content-list__link">Course Hub</a>
+                                                    <a href="index-online-academy.html" class="menu-content-list__link">Online Academy <span class="badge hot">Hot</span></a>
+                                                    <a href="index-university.html" class="menu-content-list__link">University</a>
+                                                    <a href="index-education-center.html" class="menu-content-list__link">Education Center <span class="badge hot">Hot</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="menu-content-list">
+                                                    <a href="index-language-academic.html" class="menu-content-list__link">Language Academic</a>
+                                                    <a href="index-single-instructor.html" class="menu-content-list__link">Single Instructor</a>
+                                                    <a href="index-dev.html" class="menu-content-list__link">Dev <span class="badge new">New</span></a>
+                                                    <a href="index-online-art.html" class="menu-content-list__link">Online Art <span class="badge new">New</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="menu-content-banner" style="background-image: url(assets/images/home-megamenu-bg.jpg);">
+                                                    <h4 class="menu-content-banner__title">Achieve Your Goals With EduMall</h4>
+                                                    <a href="#" class="menu-content-banner__btn btn btn-primary btn-hover-secondary">Purchase now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Mega Menu Content Start -->
+                                </li>
+                            </ul>
+
+
+
+
+                        </li>
+                        <li>
+                            <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                    
+                    <ul class="sub-menu">
+                        
+                        <li>
+                            <a href={{ url_for('course.courseDetails') }}><span>Course Details</span></a>
+                            
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                    <ul class="sub-menu">
+                       
+                        <li>
+                            <a href={{ url_for('blog.blogDetails') }}><span>Blog Details</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li> 
+                    <a href="#"><span>Pages</span></a>
+                    <ul class="sub-menu">
+                        <li><a href="become-an-instructor.html"><span>Become an Instructor</span></a></li>
+                        <li>
+                            <a href="instructors.html"><span>Instructor</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="dashboard-my-courses.html"><span>My Courses</span></a></li>
+                                <li><a href="dashboard-announcement.html"><span>Announcements</span></a></li>
+                                <li><a href="dashboard-withdraw.html"><span>Withdrawals</span></a></li>
+                                <li><a href="dashboard-quiz-attempts.html"><span>Quiz Attempts</span></a></li>
+                                <li><a href="dashboard-question-answer.html"><span>Question & Answer</span></a></li>
+                                <li><a href="dashboard-assignments.html"><span>Assignments</span></a></li>
+                                <li><a href="dashboard-students.html"><span>My Students</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                        <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>           
+                        <li><a href="membership-plans.html"><span>Membership plans</span></a></li>
+                        <li><a href="faqs.html"><span>FAQs</span></a></li>                        
+                        <li>
+                            <a href="#"><span>Dashboard</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="dashboard-index.html"><span>Dashboard</span></a></li>
+                                <li><a href="dashboard-student-index.html"><span>Dashboard Student</span></a></li>
+                                <li><a href="dashboard-profile.html"><span>My Profile</span></a></li>
+                                <li><a href="dashboard-all-course.html"><span>Enrolled Courses</span></a></li>
+                                <li><a href="dashboard-wishlist.html"><span>Wishlist</span></a></li>
+                                <li><a href="dashboard-reviews.html"><span>Reviews</span></a></li>
+                                <li><a href="dashboard-my-quiz-attempts.html"><span>My Quiz Attempts</span></a></li>
+                                <li><a href="dashboard-purchase-history.html"><span>Purchase History</span></a></li>
+                                <li><a href="dashboard-settings.html"><span>Settings</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>Features</span></a>
+                    <ul class="sub-menu">
+                        <li><a href={{ url_for('events.event') }}><span>Events</span></a>
+                            <ul class="sub-menu">
+                                
+                                <li>
+                                    <a <a href={{ url_for('events.eventDetails') }}><span>Event Details</span></a>
+                                    
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a>
+                            <ul class="sub-menu">
+                                    <li><a href="my-account.html"><span>My account</span></a></li>
+                                    <li><a href="wishlist.html"><span>Wishlist</span></a></li>
+                                    <li><a href="cart.html"><span>Cart</span></a></li>                         
+                                    <li><a href="checkout.html"><span>Checkout</span></a></li>
+                                <li>
+                                    <a href={{ url_for('shop.shopDetails') }}><span>Shop Details</span></a>
+                                    
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href={{ url_for('zoom.zoomMeeting') }}><span>Zoom</span></a></li>
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header User Button Start -->
+            <div class="offcanvas-user d-lg-none">
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+                </div>
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+                </div>
+            </div>
+            <!-- Header User Button End -->
+
+        </div>
+        <!-- Offcanvas End -->
+
+        <!-- Zoom Meetings Section Start -->
+        <div class="zoom-meetings-section section-padding-01">
+            <div class="container custom-container">
+
+                <div class="row gy-6">
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+                        <!-- Zoom Meetings Item Start -->
+                        <div class="zoom-meetings-item">
+                            <div class="zoom-meetings-item__thumbnail">
+                                <a href={{ url_for('zoom.zoomMeetingDetails') }}><img src="../static/assets/images/zoom-meetings/zoom-meeting-01.jpg" alt="Zoom Meetings" width="370" height="246"></a>
+                            </div>
+                            <div class="zoom-meetings-item__caption">
+                                <h2 class="zoom-meetings-item__title"><a href={{ url_for('zoom.zoomMeetingDetails') }}>Marketing Committee Meeting</a></h2>
+                                <div class="zoom-meetings-item__id">
+                                    <span class="label">Meeting ID: </span>
+                                    <span class="value">95671010984</span>
+                                </div>
+                                <div class="zoom-meetings-item__meta">
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-calendar"></i> Nov 10, 2020 3:27 PM</p>
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-clock"></i> 45m</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Zoom Meetings Item Start -->
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+                        <!-- Zoom Meetings Item Start -->
+                        <div class="zoom-meetings-item">
+                            <div class="zoom-meetings-item__thumbnail">
+                                <a href={{ url_for('zoom.zoomMeetingDetails') }}><img src="../static/assets/images/zoom-meetings/zoom-meeting-02.jpg" alt="Zoom Meetings" width="370" height="246"></a>
+                            </div>
+                            <div class="zoom-meetings-item__caption">
+                                <h2 class="zoom-meetings-item__title"><a href={{ url_for('zoom.zoomMeetingDetails') }}>Executive Assistant Meeting</a></h2>
+                                <div class="zoom-meetings-item__id">
+                                    <span class="label">Meeting ID: </span>
+                                    <span class="value">95242815687</span>
+                                </div>
+                                <div class="zoom-meetings-item__meta">
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-calendar"></i> Dec 22, 2020 3:27 PM</p>
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-clock"></i> 1h:20m</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Zoom Meetings Item Start -->
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+                        <!-- Zoom Meetings Item Start -->
+                        <div class="zoom-meetings-item">
+                            <div class="zoom-meetings-item__thumbnail">
+                                <a href={{ url_for('zoom.zoomMeetingDetails') }}><img src="../static/assets/images/zoom-meetings/zoom-meeting-03.jpg" alt="Zoom Meetings" width="370" height="246"></a>
+                            </div>
+                            <div class="zoom-meetings-item__caption">
+                                <h2 class="zoom-meetings-item__title"><a href={{ url_for('zoom.zoomMeetingDetails') }}>Website Renovation Meeting</a></h2>
+                                <div class="zoom-meetings-item__id">
+                                    <span class="label">Meeting ID: </span>
+                                    <span class="value">98912356536</span>
+                                </div>
+                                <div class="zoom-meetings-item__meta">
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-calendar"></i> Dec 20, 2020 3:27 PM</p>
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-clock"></i> 30m</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Zoom Meetings Item Start -->
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+                        <!-- Zoom Meetings Item Start -->
+                        <div class="zoom-meetings-item">
+                            <div class="zoom-meetings-item__thumbnail">
+                                <a href={{ url_for('zoom.zoomMeetingDetails') }}><img src="../static/assets/images/zoom-meetings/zoom-meeting-04.jpg" alt="Zoom Meetings" width="370" height="246"></a>
+                            </div>
+                            <div class="zoom-meetings-item__caption">
+                                <h2 class="zoom-meetings-item__title"><a href={{ url_for('zoom.zoomMeetingDetails') }}>Teacher Leader Team Meeting</a></h2>
+                                <div class="zoom-meetings-item__id">
+                                    <span class="label">Meeting ID: </span>
+                                    <span class="value">93842220661</span>
+                                </div>
+                                <div class="zoom-meetings-item__meta">
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-calendar"></i> Dec 30, 2020 3:24 PM</p>
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-clock"></i> 1h:15m</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Zoom Meetings Item Start -->
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+                        <!-- Zoom Meetings Item Start -->
+                        <div class="zoom-meetings-item">
+                            <div class="zoom-meetings-item__thumbnail">
+                                <a href={{ url_for('zoom.zoomMeetingDetails') }}><img src="../static/assets/images/zoom-meetings/zoom-meeting-05.jpg" alt="Zoom Meetings" width="370" height="246"></a>
+                            </div>
+                            <div class="zoom-meetings-item__caption">
+                                <h2 class="zoom-meetings-item__title"><a href={{ url_for('zoom.zoomMeetingDetails') }}>Team member responsibilities</a></h2>
+                                <div class="zoom-meetings-item__id">
+                                    <span class="label">Meeting ID: </span>
+                                    <span class="value">91453356292</span>
+                                </div>
+                                <div class="zoom-meetings-item__meta">
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-calendar"></i> Nov 10, 2020 3:27 PM</p>
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-clock"></i> 1h:30m</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Zoom Meetings Item Start -->
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
+                        <!-- Zoom Meetings Item Start -->
+                        <div class="zoom-meetings-item">
+                            <div class="zoom-meetings-item__thumbnail">
+                                <a href={{ url_for('zoom.zoomMeetingDetails') }}><img src="../static/assets/images/zoom-meetings/zoom-meeting-06.jpg" alt="Zoom Meetings" width="370" height="246"></a>
+                            </div>
+                            <div class="zoom-meetings-item__caption">
+                                <h2 class="zoom-meetings-item__title"><a href={{ url_for('zoom.zoomMeetingDetails') }}>Strategic Planning Meeting</a></h2>
+                                <div class="zoom-meetings-item__id">
+                                    <span class="label">Meeting ID: </span>
+                                    <span class="value">99005309720</span>
+                                </div>
+                                <div class="zoom-meetings-item__meta">
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-calendar"></i> Nov 10, 2020 3:20 PM</p>
+                                    <p class="zoom-meetings-item__meta-action"><i class="far fa-clock"></i> 40m</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Zoom Meetings Item Start -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Zoom Meetings Section End -->
+{%endblock%}

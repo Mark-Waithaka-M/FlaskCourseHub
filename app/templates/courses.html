@@ -1,0 +1,796 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+  
+        <!-- Page Banner Section Start -->
+        <div class="page-banner bg-color-05">
+            <div class="page-banner__wrapper">
+                <div class="container">
+
+                    <!-- Page Breadcrumb Start -->
+                    <div class="page-breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href={{ url_for('home.homepage') }}>Home</a></li>
+                            <li class="breadcrumb-item active">Courses</li>
+                        </ul>
+                    </div>
+                    <!-- Page Breadcrumb End -->
+                    {%if name%}
+                    <!-- Page Banner Caption Start -->
+                    <div class="page-banner__caption text-center">
+                        <h2 class="page-banner__main-title" style="text-transform: capitalize;">{{name}} Courses</h2>
+                    </div>
+                    <!-- Page Banner Caption End -->
+                    {%else%}
+                      <!-- Page Banner Caption Start -->
+                      <div class="page-banner__caption text-center">
+                        <h2 class="page-banner__main-title" style="text-transform: capitalize;">Courses</h2>
+                    </div>
+                    <!-- Page Banner Caption End -->
+
+                    {%endif%}
+
+                </div>
+            </div>
+        </div>
+        <!-- Page Banner Section End -->
+
+        <!-- Offcanvas Start -->
+        <div class="offcanvas offcanvas-end offcanvas-mobile" id="offcanvasMobileMenu" style="background-image: url(assets/images/mobile-bg.jpg);">
+            <div class="offcanvas-header bg-white">
+                <div class="offcanvas-logo">
+                    <a class="offcanvas-logo__logo" href="#"><img src="../static/assets/images/dark-logo.png" alt="Logo"></a>
+                </div>
+                <button type="button" class="offcanvas-close" data-bs-dismiss="offcanvas"><i class="fal fa-times"></i></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <nav class="canvas-menu">
+                    <ul class="offcanvas-menu">
+                        <li><a class="active" href={{ url_for('home.homepage') }}><span>Home</span></a></li>
+                        <li>
+                            <a href={{ url_for('course.courses') }}><span>Courses</span></a>
+                            
+                        </li>
+                        <li>
+                            <a href={{ url_for('blog.blogs') }}><span>Blog</span></a> 
+                            
+                        </li>
+                        <li>
+                            <a href="#"><span>Help?</span></a>
+                            <ul class="sub-menu">
+                                
+                                <li><a href={{ url_for('aboutUs.about') }}><span>About us</span></a></li>
+                                <li><a href={{ url_for('contactUs.contact') }}><span>Contact us</span></a></li>  
+                                <!-- <li><a href="membership-plans.html"><span>Membership plans</span></a></li> -->
+                                <li><a href="faqs.html"><span>FAQs</span></a></li>
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><span>more</span></a>
+                            <ul class="sub-menu">
+                                <li><a href={{ url_for('events.event') }}><span>Events</span></a></li>
+                                <li><a href={{ url_for('shop.shops') }}><span>Shop</span></a></li>
+                                <li><a href={{ url_for('account.accounts') }}><span>My account</span></a></li>
+                                <li><a href={{ url_for('wishlist.wishlists') }}><span>Wishlist</span></a></li>
+                                <li><a href={{ url_for('cart.carts') }}><span>Cart</span></a></li>
+                                {%if current_user.is_admin == True%}
+                                <li><a href=""><span>Admin dash</span></a></li>
+                                {%endif%}
+                            </ul>
+                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header User Button Start -->
+            <div class="offcanvas-user d-lg-none">
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__login btn btn-secondary btn-hover-secondarys" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+                </div>
+                <div class="offcanvas-user__button">
+                    <button class="offcanvas-user__signup btn btn-primary btn-hover-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Sign Up</button>
+                </div>
+            </div>
+            <!-- Header User Button End -->
+
+        </div>
+        <!-- Offcanvas End -->
+       
+
+        <!-- Courses Start -->
+        <div class="courses-section section-padding-01">
+            <div class="container">
+                <div class="row gy-10 flex-row-reverse">
+                    <div class="col-lg-9">
+
+                        <!-- Archive Filter Bars Start -->
+                        <div class="archive-filter-bars">
+
+                            <div class="archive-filter-bar">
+                                <p>We found <span>{{courses.items | length}}</span> courses available for you</p>
+                            </div>
+
+                            <div class="archive-filter-bar">
+
+                                <div class="filter-bar-wrapper">
+                                    <span>See</span>
+                                    <ul class="nav">
+                                        <li><button data-bs-toggle="tab" data-bs-target="#grid"><i class="fas fa-th"></i></button></li>
+                                        <li><button class="active" data-bs-toggle="tab" data-bs-target="#list"><i class="fas fa-bars"></i></button></li>
+                                    </ul>
+                                    <div class="filter-select">
+                                        <form action="#">
+                                            <select class="edumall-nice-select" data-select="{&quot;fieldLabel&quot;:&quot;Sort by:&quot;}">
+                                                <option value="Latest" selected='selected'> Latest </option>
+                                                <option value="oldest"> Oldest</option>
+                                                <option value="Course Title (a-z)"> Course Title (a-z)</option>
+                                                <option value="Course Title (a-z)"> Course Title (a-z)</option>
+                                            </select>
+                                            <input type="hidden" name="paged" value="1">
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- Archive Filter Bars End -->
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade" id="grid">
+
+                                <div class="row gy-6">
+                                    {%for course in courses%}
+                                    <div class="col-lg-4 col-sm-6">
+
+                                        <!-- Course Start -->
+                                        <div class="course-item" data-aos="fade-up" data-aos-duration="1000">
+                                            <div class="course-header">
+                                                <div class="course-header__thumbnail ">
+                                                    <a href="{{ url_for('course.courseDetails',name = course.name) }}"><img src="../static/uploads/{{course.Image}}" alt="courses" width="330" height="221"></a>
+                                                </div>
+                                            </div>
+                                            <div class="course-info">
+                                                <h3 class="course-info__title"><a >{{course.name}}</a></h3>
+                                                <a href="#" class="course-info__instructor">{{course.categories.course_category}}</a>
+                                                <div class="course-info__price">
+                                                    <span class="sale-price">${{course.price_charters[price_charters | length - 1].cost}}.<small class="separator">00</small></span>
+                                                </div>
+                                         <!---       <div class="course-info__rating">
+
+                                                    <div class="rating-star">
+                                                        <div class="rating-label" style="width: 80%;"></div>
+                                                    </div>
+
+                                                    <span>(2)</span>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                        <!-- Course End -->
+
+                                    </div>
+                                    {%endfor%}
+                                  
+                                   
+                                  
+                                   
+                                  
+                                    
+                                </div>
+
+                            </div>
+                            {%if courses.items | length != 0 %}
+                            <div class="tab-pane fade show active" id="list">
+                                {%for course in courses.items%}
+                                <!-- Course List Start -->
+                                <div class="course-list-item">
+                                    <div class="course-list-header">
+                                        <div class="course-list-header__thumbnail">
+                                            <a href="{{ url_for('course.courseDetails',name = course.name) }}"><img src="../static/uploads/{{course.Image}}" alt="courses" width="270" height="181"></a>
+                                        </div>
+                                    </div>
+                                    <div class="course-list-info">
+                                        <h3 class="course-list-info__title"><a href={{ url_for('course.courseDetails',name = course.name) }} style="text-decoration: none;text-transform: capitalize;">{{course.name}}</a></h3>
+                                        <div class="course-list-info__meta">
+                                            <span><i class="far fa-play-circle"></i> {{course.lectures}} Lessons</span>
+                                            <span><i class="far fa-clock"></i> {{course.date}}</span>
+                                            <span><i class="far fa-sliders-h"></i> {{course.level}}</span>
+                                        </div>
+                                        <div class="course-list-info__description">
+                                            <p>
+                                                {{course.about[0].paragraphs[0].content | truncate(100,True,'...')}}
+                                            </p>
+                                        </div>
+                                        <div class="course-list-info__action">
+                                           
+                                            <a href="{{url_for('wishlist.add_to_wishlist',name = course.name)}}"><button class="btn-icon btn-light btn-hover-primary" data-bs-tooltip="tooltip" data-bs-placement="top" title="Add to wishlist"><i class="far fa-heart"></i></button></a>
+
+                    
+                                        </div>
+                                        <div class="course-list-info__footer">
+                                            <div class="course-list-info__price">
+                                                <span class="sale-price">${{course.price_charters[price_charters | length - 1].cost}}.<small class="separator">00</small></span>
+                                            </div>
+                                          <!--  <div class="course-list-info__rating">
+
+                                                <div class="rating-star">
+                                                    <div class="rating-label" style="width: 100%;"></div>
+                                                </div>
+
+                                                <div class="rating-average">
+                                                    <span class="rating-average__average">5.0</span>
+                                                    <span class="rating-average__total">/5</span>
+                                                </div>
+
+                                                <p class="course-list-info__rating-count">(2 ratings)</p>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Course List End -->
+                                {%endfor%}
+
+                            </div>
+                            {%else%}
+                            <div class="alert alert-warning" role="alert">
+                               Unfortunately no course was found,please check again later!
+                              </div>
+        
+                            {%endif%}
+    
+                        </div>
+                        {%if courses.items | length != 0 %}
+                        <!-- Page Pagination Start -->
+                      <!-- Page Pagination Start -->
+                <div class="page-pagination">
+                    <ul class="pagination justify-content-center">
+                        {%for page_num  in courses.iter_pages(left_edge=1,right_edge=1,left_current =1 ,right_current=2)%}
+                        {%if page_num%}
+                        {%if courses.page == page_num%}
+                        <li><a class="active" href="{{url_for('course.courses',page = page_num)}}">{{page_num}}</a></li>
+                        {%else%}
+                        <li><a  href="{{url_for('course.courses',page = page_num)}}">{{page_num}}</a></li>
+                        {%endif%}
+
+                        {%else%}
+
+                        ...
+                        {%endif%}
+                        {%endfor%}
+                        
+                     <!--   <li><a href="#"><i class="far fa-angle-double-right"></i></a></li> -->
+                    </ul>
+                </div>
+                <!-- Page Pagination End -->
+                        {%endif%}
+                    </div>
+                   
+                    <div class="col-lg-3">
+                        <!-- Sidebar Widget Start -->
+                        <div class="sidebar-widget-wrapper">
+
+                            <!-- Sidebar Widget Wrapper Start -->
+                            <div class="sidebar-widget-wrap bg-color-10">
+                                <h4 class="sidebar-widget-wrap__title">Filter by category</h4>
+
+                                <!-- Widget Filter Start -->
+                                <div class="widget-filter">
+
+                                    <!-- Widget Filter Wrapper Start -->
+                                    <div class="widget-filter__wrapper">
+                                        <ul class="widget-filter__list">
+
+                                            {%for category in categories%}
+
+                                            <li class="widget-filter__item"><a style="text-decoration: none;color: black;" href="/courses/{{category.course_category}}">{{category.course_category}}</a></li>
+
+                                            {%endfor%}
+                                         <!--   <li>
+                                                <!-- Widget Filter Item Start -
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories13" name="sort-by">
+                                                    <label for="categories13">Art & Design <span>(8)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories14" name="sort-by">
+                                                    <label for="categories14">Business <span>(12)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories15" name="sort-by">
+                                                    <label for="categories15">Data Science <span>(7)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories16" name="sort-by">
+                                                    <label for="categories16">Development <span>(10)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories17" name="sort-by">
+                                                    <label for="categories17">Finance <span>(8)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories18" name="sort-by">
+                                                    <label for="categories18">Health & Fitness <span>(8)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories19" name="sort-by">
+                                                    <label for="categories19">Lifestyle <span>(9)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories20" name="sort-by">
+                                                    <label for="categories20">Marketing <span>(8)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories21" name="sort-by">
+                                                    <label for="categories21">Music <span>(8)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories22" name="sort-by">
+                                                    <label for="categories22">Personal Development <span>(9)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories23" name="sort-by">
+                                                    <label for="categories23">Photography <span>(7)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="categories24" name="sort-by">
+                                                    <label for="categories24">Teaching & Academics <span>(7)</span></label>
+                                                </div>
+                                             </li>
+                                                <!-- Widget Filter Item End -->
+                                           
+                                        </ul>
+                                    </div>
+                                    <!-- Widget Filter Wrapper End -->
+                                </div>
+                                <!-- Widget Filter End -->
+
+                            </div>
+                            <!-- Sidebar Widget Wrapper End -->
+
+                            <!-- Sidebar Widget Wrapper Start -->
+                            <div class="sidebar-widget-wrap bg-color-10 mt-4">
+                                <h4 class="sidebar-widget-wrap__title">Filter by</h4>
+
+                                <!-- Widget Filter Start 
+                                <div class="widget-filter">
+                                    <h4 class="widget-filter__title-02">Instructor</h4>
+
+                                    <!-- Widget Filter Wrapper Start 
+                                    <div class="widget-filter__wrapper">
+                                        
+                                         
+                                          
+                                      
+                                    </div>
+                                    <!-- Widget Filter Wrapper End -->
+                                </div>
+                                <br>
+                                <!-- Widget Filter End -->
+
+                                <!-- Widget Filter Start -->
+                                <div class="widget-filter">
+                                    <h4 class="widget-filter__title-02">Price</h4>
+
+                                    <!-- Widget Filter Wrapper Start -->
+                                    <div class="widget-filter__wrapper">
+                                        <ul class="widget-filter__list">
+                                            <li class="widget-filter__item"><a href="/course" style="text-decoration: none;text-transform: capitalize;color: black;">all</a></li>
+                                            <li class="widget-filter__item"><a href="/courses/paid" style="text-decoration: none;text-transform: capitalize;color: black;">paid</a></li>
+                                            <li class="widget-filter__item"><a href="/courses/free" style="text-decoration: none;text-transform: capitalize;color: black;">free</a></li>
+
+
+
+
+                                            <!--
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="radio" id="radio4" checked name="sort-by">
+                                                    <label for="radio4">All <span>(101)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End 
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="radio" id="radio5" name="sort-by">
+                                                    <label for="radio5">Free <span>(6)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End 
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="radio" id="radio6" name="sort-by">
+                                                    <label for="radio6">Paid <span>(95)</span></label>
+                                                </div>
+                                                  </li>
+                                                <!-- Widget Filter Item End -->
+                                          
+                                        </ul>
+                                    </div>
+                                    <!-- Widget Filter Wrapper End -->
+                                </div>
+                                <!-- Widget Filter End -->
+
+                                <!-- Widget Filter Start -->
+                                <div class="widget-filter">
+                                    <h4 class="widget-filter__title-02">Level</h4>
+
+                                    <!-- Widget Filter Wrapper Start -->
+                                    <div class="widget-filter__wrapper">
+                                        <ul class="widget-filter__list">
+                                           
+
+                                            <li class="widget-filter__item"><a style="text-decoration: none;color: black;text-transform: capitalize;" href="/courses-level/beginner">beginner</a></li>
+                                            <li class="widget-filter__item"><a style="text-decoration: none;color: black;text-transform: capitalize;" href="/courses-level/intermediate">intermediate</a></li>
+                                            <li class="widget-filter__item"><a style="text-decoration: none;color: black;text-transform: capitalize;" href="/courses-level/expert">expert</a></li>
+
+                                          
+                                         <!--   <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="level5" name="sort-by">
+                                                    <label for="level5">All Levels <span>(50)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End 
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="level6" name="sort-by">
+                                                    <label for="level6">Beginner <span>(32)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End 
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="level7" name="sort-by">
+                                                    <label for="level7">Intermediate <span>(17)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End 
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="level8" name="sort-by">
+                                                    <label for="level8">Expert <span>(2)</span></label>
+                                                </div>
+                                                </li>
+                                                <!-- Widget Filter Item End -->
+                                            
+                                        </ul>
+                                    </div>
+                                    <!-- Widget Filter Wrapper End -->
+                                </div>
+                                <!-- Widget Filter End -->
+
+                                <!-- Widget Filter Start -->
+                                <div class="widget-filter">
+                                    <h4 class="widget-filter__title">Language</h4>
+
+                                    <!-- Widget Filter Wrapper Start -->
+                                    <div class="widget-filter__wrapper">
+                                        <ul class="widget-filter__list">
+
+                                            <li class="widget-filter__item"><a href="/course-language/english" style="text-decoration: none;text-transform: capitalize;color: black;">english</a></li>
+                                            <li class="widget-filter__item"><a href="/course-language/spanish"  style="text-decoration: none;text-transform: capitalize;color: black;">spanish</a></li>
+                                            <li class="widget-filter__item"><a href="/course-language/swahili"  style="text-decoration: none;text-transform: capitalize;color: black;">swahili</a></li>
+                                            <!--
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="language10" name="sort-by">
+                                                    <label for="language10">English <span>(21)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End 
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                    <!-- Widget Filter Wrapper End -->
+                                </div>
+                                <!-- Widget Filter End -->
+                                <!--
+                                <!-- Widget Filter Start --
+                                <div class="widget-filter">
+                                    <h4 class="widget-filter__title-02">Rating</h4>
+
+                                    <!-- Widget Filter Wrapper Start --
+                                    <div class="widget-filter__wrapper">
+                                        <ul class="widget-filter__list">
+                                           
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                              <a href="google.com">  <div class="widget-filter__item">
+                                                    <input type="checkbox" id="rating6" name="sort-by">
+                                                    <label for="rating6">
+                                                        <span class="star-line">
+                                    <span class="star" style="width: 80%;"></span>
+                                                        </span>
+
+                                                        <span>(07)</span>
+                                                    </label>
+                                                </div></a>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="rating7" name="sort-by">
+                                                    <label for="rating7">
+                                                        <span class="star-line">
+                                    <span class="star" style="width: 80%;"></span>
+                                                        </span>
+
+                                                        <span>(0)</span>
+                                                    </label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="rating8" name="sort-by">
+                                                    <label for="rating8">
+                                                        <span class="star-line">
+                                    <span class="star" style="width: 60%;"></span>
+                                                        </span>
+
+                                                        <span>(0)</span>
+                                                    </label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="rating9" name="sort-by">
+                                                    <label for="rating9">
+                                                        <span class="star-line">
+                                    <span class="star" style="width: 40%;"></span>
+                                                        </span>
+
+                                                        <span>(0)</span>
+                                                    </label>
+                                                </div>
+                                                <!-- Widget Filter Item End --
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start --
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="rating10" name="sort-by">
+                                                    <label for="rating10">
+                                                        <span class="star-line">
+                                    <span class="star" style="width: 20%;"></span>
+                                                        </span>
+
+                                                        <span>(0)</span>
+                                                    </label>
+                                                </div>
+                                                <!-- Widget Filter Item End 
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Widget Filter Wrapper End 
+                                </div>
+                                <!-- Widget Filter End -->
+
+                            
+
+                                <!-- Widget Filter Start -->
+                                <div class="widget-filter">
+                                    <h4 class="widget-filter__title-02">Duration</h4>
+
+                                    <!-- Widget Filter Wrapper Start -->
+                                    <div class="widget-filter__wrapper">
+                                        <ul class="widget-filter__list">
+
+                                            <li class="widget-filter__item"><a href="/course-duration/less than 7 hours"  style="text-decoration: none;text-transform: capitalize;color: black;">less than 7 hours</a></li>
+                                            <li class="widget-filter__item"><a href="/course-language/7 - 10 hours"  style="text-decoration: none;text-transform: capitalize;color: black;">7 - 10 hours</a></li>
+                                            <li class="widget-filter__item"><a href="/course-language/10 - 15 hours"  style="text-decoration: none;text-transform: capitalize;color: black;">10 - 15 hours</a></li>
+                                            <li class="widget-filter__item"><a href="/course-language/more than 15 hours"  style="text-decoration: none;text-transform: capitalize;color: black;">more than 15 hours</a></li>
+
+
+
+
+                                            <!-- 
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="duration5" name="sort-by">
+                                                    <label for="duration5">Less than 2 hours <span>(57)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End 
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="duration6" name="sort-by">
+                                                    <label for="duration6">3 - 6 hours <span>(7)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End -
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="duration7" name="sort-by">
+                                                    <label for="duration7">7 - 16 hours <span>(10)</span></label>
+                                                </div>
+                                                <!-- Widget Filter Item End 
+                                            </li>
+                                            <li>
+                                                <!-- Widget Filter Item Start 
+                                                <div class="widget-filter__item">
+                                                    <input type="checkbox" id="duration8" name="sort-by">
+                                                    <label for="duration8">17+ Hours <span>(27)</span></label>
+                                                </div>
+                                            </li>
+                                                 Widget Filter Item End -->
+                                            
+                                        </ul>
+                                    </div>
+                                    <!-- Widget Filter Wrapper End -->
+                                </div>
+                                <!-- Widget Filter End -->
+
+                            </div>
+                            <!-- Sidebar Widget Wrapper End -->
+
+                        </div>
+                        <!-- Sidebar Widget End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Courses End -->
+
+        <!-- Courses Hover End 
+        <div id="course-hover">
+            <div class="course-item-hover">
+                <div class="course-item-hover__category">
+                    <a href="#">Communications</a>
+                </div>
+                <h2 class="course-item-hover__title"><a >Successful Negotiation: Master Your Negotiating Skills</a></h2>
+                <div class="course-item-hover__rating">
+
+                    <div class="rating-star">
+                        <div class="rating-label" style="width: 100%;"></div>
+                    </div>
+
+                    <div class="rating-average">
+                        <span class="rating-average__average">5.0</span>
+                        <span class="rating-average__total">/5</span>
+                    </div>
+
+                    <p class="course-item-hover__rating-count">(2 ratings)</p>
+                </div>
+                <div class="course-item-hover__meta">
+                    <span>5 Lessons</span>
+                    <span>2.3 hours</span>
+                    <span>All Levels</span>
+                </div>
+                <div class="course-item-hover__benefits">
+                    <h6 class="course-item-hover__benefits-title">What you'll learn</h6>
+                    <ul class="course-item-hover__benefits-list">
+                        <li>Negotiate effectively and fairly to make 1000s more than they would otherwise</li>
+                        <li>Be confident in starting and finishing a negotiation</li>
+                        <li>Use smart tactics to increase their bargaining power</li>
+                        <li>Develop mental and emotional strength to keep pushing until they get a great price</li>
+                        <li>Use negotiating skills in both personal and professional situations</li>
+                    </ul>
+                </div>
+                <div class="course-item-hover__btn">
+                    <a class="btn btn-primary btn-hover-secondary w-100" href="#">Add to cart</a>
+                    <a class="btn-link" href="#"><i class="far fa-heart"></i> Add to wishlist</a>
+                </div>
+            </div>
+        </div>
+        <!-- Courses Hover End -->
+
+        <!-- Courses List Hover End --
+        <div id="course-list-hover">
+            <div class="course-item-hover">
+                <div class="course-item-hover__category">
+                    <a href="#">Communications</a>
+                </div>
+                <h2 class="course-item-hover__title"><a>Successful Negotiation: Master Your Negotiating Skills</a></h2>
+                <div class="course-item-hover__rating">
+
+                    <div class="rating-star">
+                        <div class="rating-label" style="width: 100%;"></div>
+                    </div>
+
+                    <div class="rating-average">
+                        <span class="rating-average__average">5.0</span>
+                        <span class="rating-average__total">/5</span>
+                    </div>
+
+                    <p class="course-item-hover__rating-count">(2 ratings)</p>
+                </div>
+                <div class="course-item-hover__meta">
+                    <span>5 Lessons</span>
+                    <span>2.3 hours</span>
+                    <span>All Levels</span>
+                </div>
+                <div class="course-item-hover__benefits">
+                    <h6 class="course-item-hover__benefits-title">What you'll learn</h6>
+                    <ul class="course-item-hover__benefits-list">
+                        <li>Negotiate effectively and fairly to make 1000s more than they would otherwise</li>
+                        <li>Be confident in starting and finishing a negotiation</li>
+                        <li>Use smart tactics to increase their bargaining power</li>
+                        <li>Develop mental and emotional strength to keep pushing until they get a great price</li>
+                        <li>Use negotiating skills in both personal and professional situations</li>
+                    </ul>
+                </div>
+                <div class="course-item-hover__btn">
+                    <a class="btn btn-primary btn-hover-secondary w-100" href="#">Add to cart</a>
+                    <a class="btn-link" href="#"><i class="far fa-heart"></i> Add to wishlist</a>
+                </div>
+            </div>
+        </div>
+        <!-- Courses List Hover End -->
+{%endblock%}

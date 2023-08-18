@@ -1,0 +1,63 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">New Blog heading</h4>
+    {%with messages = get_flashed_messages(with_categories = True)%}
+    {%if messages%}
+    {%for category,message in messages%}
+    <div class="alert alert-{{category}}" role="alert">
+        {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+        <div class="form" style="background-color: white;padding: 10px;">
+
+            <form action="{{url_for('BlogUpload.new_blog_heading',id =blog.id)}}" method="post" enctype="multipart/form-data">
+                <p>Your are adding a heading for blog:<b>{{blog.heading}}</b></h6></p>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Heading</label>
+                    <input type="text" name="heading" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </form>
+                    <br>
+                    <div class="col-md-1">
+                        <a href="{{url_for('BlogUpload.new_blog_paragraph',id=blog.id)}}"> 
+                            <button type="button" class="btn btn-primary">proceed</button> 
+                        </a>
+
+
+                    </div>
+                  </div>
+                
+                
+           
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+    <!--dashboard content end-->
+
+
+{%endblock%}

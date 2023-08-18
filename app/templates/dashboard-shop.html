@@ -1,0 +1,114 @@
+{%extends 'dashboard-base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+
+{%block body%}
+
+ <!-- Dashboard Content Start -->
+ <div class="dashboard-content">
+
+    <div class="container">
+        <h4 class="dashboard-title">Shop</h4>
+        
+
+        <div class="row">
+            <div class="col-md-2">
+                <a href="{{url_for('shopUpload.shopItemUpload')}}">
+                    <button class='btn btn-primary'>New Shop Item</button>
+                  </a>
+            </div>
+            <br>
+            <div class="col-md-2">
+                <a href="{{url_for('dashboard.dashboard_shop_categories')}}">
+                    <button class='btn btn-primary'>Shop Categories</button>
+                  </a>
+            </div>
+        </div>
+        
+        <br>
+        <br>
+        <table class="table" style="background-color:white;padding:10px;border-radius:15px;">
+            <thead>
+              <tr>
+                <th scope="col">image</th>
+                <th scope="col">Name</th>
+                <th scope="col">category</th>
+                <th scope="col">stock</th>
+                <th scope="col">sku</th>
+                <th scope="col">language</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              {%with messages = get_flashed_messages(with_categories = True)%}
+              {%if messages%}
+              {%for category,message in messages%}
+              <div class="alert alert-{{category}}" role="alert">
+                  {{message}}
+              </div>
+              {%endfor%}
+              {%endif%}
+              {%endwith%}
+
+              {%if items | length == 0%}
+              <div class="alert alert-warning" role="alert">
+                There are no items in the shop,kindly use the button above to create a new item!
+            </div>
+            {%endif%}
+
+
+                {%for item in items%}
+              <tr>
+                <th>
+                    <img src="../static/uploads/{{item.image}}" alt="" width="150px" height="200px"/>
+                </th>
+                <th scope="row">{{item.name}}</th>
+                <td>{{item.shop_category.category_name}}</td>
+                <td>{{item.stock}}</td>
+                <td>{{item.sku}}</td>
+                <td>{{item.language}}</td>
+                <td>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <a href="{{url_for('shop.shopDetails',name = item.name)}}"><button class="btn btn-primary">view</button></a>
+
+
+                    </div>
+                    <br>
+                    <div class="col-md-3">
+                      <a href="{{url_for('shopUpload.delete_shop_item',name = item.name)}}"><button class="btn btn-danger">delete</button></a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+        <!--dashboard content end-->
+
+
+
+{%endblock%}
