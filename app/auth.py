@@ -148,7 +148,7 @@ def edit_user_details():
             new_password = request.form['new_password']
             confirm_new_password = request.form['confirm_new_password']
         except:
-            flash('all fields are required',category='success')
+            flash('all fields are required',category='danger')
             return redirect(url_for('account.accounts'))
 
 

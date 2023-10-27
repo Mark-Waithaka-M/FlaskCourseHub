@@ -5,12 +5,14 @@ from os.path import join,dirname,realpath
 from os import path
 from flask_mail import Mail
 from flask_login import LoginManager
+import os
 
 
 db = SQLAlchemy()
 mail = Mail()
 migrate = Migrate()
 
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 
@@ -18,7 +20,8 @@ def create_app():
     app = Flask(__name__)
    
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Optimus99.@localhost:5432/edumall'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Optimus99.@localhost:5432/edumall'
+    app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///' + os.path.join(basedir, 'database.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['UPLOAD_FOLDER'] = join(dirname(realpath(__file__)),'static/uploads/')
     app.config['SECRET_KEY'] ='edumall_mark'
