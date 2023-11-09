@@ -20,9 +20,9 @@ def create_app():
     app = Flask(__name__)
    
 
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Optimus99.@localhost:5432/edumall'
     app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///' + os.path.join(basedir, 'database.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Optimus99.@localhost:5432/edumall'
     app.config['UPLOAD_FOLDER'] = join(dirname(realpath(__file__)),'static/uploads/')
     app.config['SECRET_KEY'] ='edumall_mark'
     app.config['STRIPE_PUBLIC_KEY'] = 'pk_test_51MpqN4DjyCqXEqNd8PquwRJ2ajmwiu41RrEsR5LOkkMEixdejANTavcRe2bxRq0Yjm5wgm9ckK5bb7aJ4gLIVw4E00GCiYnYuE'

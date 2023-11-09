@@ -98,6 +98,7 @@ def prerequisitesUpload(id):
         course = Course.query.filter_by(name=prerequisite_course_name).first()
 
         new_prerequisite = Prerequisite(parent_course=id,prerequisite_course=course.name,Image=course.Image)
+        
         db.session.add(new_prerequisite)
         db.session.commit()
         flash('prerequisite added successfully',category = 'success')
